@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrivaCrypt ULTIMATE | Suite Criptográfica Completa</title>
+    <style>
+        :root {
+            --bg: #0a0e17;
+            --card: #141a2b;
+            --text: #e2e8f0;
+            --accent: #00d4ff;
+            --accent-glow: rgba(0, 212, 255, 0.3);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #2a3446;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--card), #0f1625);
+            border-radius: 30px;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #00d4ff, #7dd3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+            background: var(--card);
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .tab-btn:hover { border-color: var(--accent); background: rgba(0, 212, 255, 0.1); }
+        .tab-btn.active {
+            background: var(--accent);
+            color: #0a0e17;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        
+        /* Panels */
+        .panel { display: none; }
+        .panel.active { display: block; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Cards */
+        .card {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        /* Form elements */
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            opacity: 0.9;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0f1625;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            color: var(--text);
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+        }
+        button {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: #0a0e17;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--accent-glow);
+        }
+        button.secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        button.danger {
+            background: var(--danger);
+            color: white;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .output-box {
+            background: #0a0e17;
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            font-family: 'Fira Code', monospace;
+            word-break: break-all;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #1a2335;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #7dd3fc);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        /* Drag & Drop */
+        .drop-zone {
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .drop-zone:hover, .drop-zone.dragover {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.05);
+        }
+        
+        /* Password Manager */
+        .password-item {
+            background: #0f1625;
+            padding: 15px;
+            border-radius: 14px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>🛡️ PrivaCrypt ULTIMATE</h1>
+        <p style="opacity: 0.8; margin-top: 10px;">Suite Criptográfica Completa · Cifrado Híbrido · Esteganografía · Blockchain</p>
+    </div>
+
+    <!-- TABS DE NAVEGACIÓN -->
+    <div class="tabs-container">
+        <button class="tab-btn active" data-tab="core">🔐 Cifrado Core</button>
+        <button class="tab-btn" data-tab="hybrid">🔑 RSA Híbrido</button>
+        <button class="tab-btn" data-tab="files">📁 Archivos</button>
+        <button class="tab-btn" data-tab="passwords">🔒 Gestor Pass</button>
+        <button class="tab-btn" data-tab="stegano">🌐 Esteganografía</button>
+        <button class="tab-btn" data-tab="analysis">📊 Análisis</button>
+        <button class="tab-btn" data-tab="expiry">⏱️ Expiración</button>
+        <button class="tab-btn" data-tab="blockchain">📜 Blockchain</button>
+    </div>
+
+    <!-- ========== PANEL CORE (Original) ========== -->
+    <div class="panel active" id="panel-core">
+        <div class="card">
+            <div class="card-header">📚 Sistema Libro</div>
+            <textarea id="bookText" rows="3" placeholder="Pega aquí el texto base (libro clave)...">El arte de la guerra es la disciplina más importante. El sigilo protege los secretos.</textarea>
+            <div style="margin-top: 10px;">Palabras cargadas: <span id="wordCount">0</span></div>
+        </div>
+        
+        <div class="card">
+            <div class="grid-2">
+                <div>
+                    <label>🛠️ Sistema</label>
+                    <select id="typeSelect">
+                        <option value="book">📖 Sistema Libro</option>
+                        <option value="classic">🏛️ Clásicos</option>
+                        <option value="military">⚡ AES-256</option>
+                    </select>
+                </div>
+                <div>
+                    <label>⚙️ Algoritmo</label>
+                    <select id="modeSelect"></select>
+                </div>
+            </div>
+            
+            <div id="shiftGroup" style="margin-top: 15px;">
+                <label>🔢 Desplazamiento</label>
+                <input type="number" id="shiftInput" value="3">
+            </div>
+            
+            <div id="keyGroup" style="margin-top: 15px; display: none;">
+                <label>🔑 Clave Vigenère</label>
+                <input id="keyInput" value="PRIVACRYPT">
+            </div>
+            
+            <div id="aesKeyGroup" style="margin-top: 15px; display: none;">
+                <label>🔐 Clave AES-256</label>
+                <input id="aesKeyInput" type="password" placeholder="Clave secreta">
+            </div>
+        </div>
+        
+        <div class="card">
+            <label>✍️ Mensaje</label>
+            <input id="messageInput" placeholder="Escribe tu mensaje...">
+            <button id="encryptCoreBtn" style="width: 100%; margin-top: 15px;">🔒 Cifrar</button>
+            <div id="coreEncResult" class="output-box" style="margin-top: 15px;"></div>
+            
+            <label style="margin-top: 20px;">🔓 Descifrar</label>
+            <input id="codeInput" placeholder="Pega el texto cifrado...">
+            <button id="decryptCoreBtn" class="secondary" style="width: 100%; margin-top: 15px;">🔎 Descifrar</button>
+            <div id="coreDecResult" class="output-box" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- ========== PANEL RSA HÍBRIDO ========== -->
+    <div class="panel" id="panel-hybrid">
+        <div class="card">
+            <div class="card-header">🧬 Generación de Claves RSA-2048</div>
+            <button id="generateRSAKeysBtn">🔨 Generar Nuevo Par de Claves</button>
+            <div style="margin-top: 20px;">
+                <label>🔓 Clave Pública (compartir)</label>
+                <textarea id="rsaPublicKey" rows="4" readonly placeholder="Tu clave pública aparecerá aquí..."></textarea>
+            </div>
+            <div style="margin-top: 15px;">
+                <label>🔐 Clave Privada (¡GUARDAR EN LUGAR SEGURO!)</label>
+                <textarea id="rsaPrivateKey" rows="4" readonly placeholder="Tu clave privada aparecerá aquí..."></textarea>
+            </div>
+            <button id="copyRSAPublicBtn" class="secondary" style="margin-top: 10px;">📋 Copiar Clave Pública</button>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">🔐 Cifrado Híbrido (RSA + AES)</div>
+            <label>Destinatario (Clave Pública)</label>
+            <textarea id="recipientPublicKey" rows="3" placeholder="Pega la clave pública del destinatario..."></textarea>
+            <label style="margin-top: 15px;">Mensaje a Cifrar</label>
+            <textarea id="hybridMessage" rows="3" placeholder="Escribe el mensaje secreto..."></textarea>
+            <button id="hybridEncryptBtn" style="width: 100%; margin-top: 15px;">🔒 Cifrar Híbrido</button>
+            <div id="hybridEncResult" class="output-box" style="margin-top: 15px;"></div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">🔓 Descifrado Híbrido</div>
+            <label>Tu Clave Privada</label>
+            <textarea id="myPrivateKey" rows="3" placeholder="Pega tu clave privada..."></textarea>
+            <label style="margin-top: 15px;">Mensaje Cifrado</label>
+            <textarea id="hybridCiphertext" rows="3" placeholder="Pega el mensaje cifrado..."></textarea>
+            <button id="hybridDecryptBtn" class="secondary" style="width: 100%; margin-top: 15px;">🔎 Descifrar Híbrido</button>
+            <div id="hybridDecResult" class="output-box" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- ========== PANEL CIFRADO DE ARCHIVOS ========== -->
+    <div class="panel" id="panel-files">
+        <div class="card">
+            <div class="card-header">📁 Cifrado de Archivos (AES-256)</div>
+            
+            <div class="drop-zone" id="fileDropZone">
+                📂 Arrastra un archivo aquí o haz clic para seleccionar
+                <input type="file" id="fileInput" style="display: none;">
+            </div>
+            
+            <div id="fileInfo" style="margin-top: 15px; display: none;">
+                <strong>Archivo seleccionado:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)
+            </div>
+            
+            <label style="margin-top: 20px;">🔐 Clave AES para el archivo</label>
+            <input type="password" id="filePassword" placeholder="Clave secreta para cifrar/descifrar">
+            
+            <div class="progress-bar" id="fileProgressBar" style="display: none;">
+                <div class="progress-fill" id="fileProgressFill"></div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="encryptFileBtn" style="flex: 1;">🔒 Cifrar Archivo</button>
+                <button id="decryptFileBtn" class="secondary" style="flex: 1;">🔓 Descifrar Archivo</button>
+            </div>
+            
+            <div id="fileResult" class="output-box" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- ========== PANEL GESTOR DE CONTRASEÑAS ========== -->
+    <div class="panel" id="panel-passwords">
+        <div class="card">
+            <div class="card-header">🔑 Gestor de Contraseñas (Cifrado Local)</div>
+            
+            <div class="grid-2">
+                <div>
+                    <label>🔐 Clave Maestra</label>
+                    <input type="password" id="masterPassword" placeholder="Clave para desbloquear el gestor">
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button id="unlockVaultBtn">🔓 Desbloquear</button>
+                </div>
+            </div>
+            
+            <div id="vaultSection" style="display: none; margin-top: 25px;">
+                <div class="grid-2" style="margin-bottom: 20px;">
+                    <input type="text" id="searchPassword" placeholder="🔍 Buscar...">
+                    <select id="passwordCategory">
+                        <option value="">Todas las categorías</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Finanzas">Finanzas</option>
+                        <option value="Redes">Redes Sociales</option>
+                    </select>
+                </div>
+                
+                <div style="background: #0f1625; padding: 20px; border-radius: 16px; margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 15px;">➕ Añadir Nueva Contraseña</h3>
+                    <div class="grid-2">
+                        <input type="text" id="newTitle" placeholder="Título (ej: Gmail)">
+                        <input type="text" id="newUsername" placeholder="Usuario/Email">
+                    </div>
+                    <div class="grid-2" style="margin-top: 10px;">
+                        <input type="password" id="newPassword" placeholder="Contraseña">
+                        <select id="newCategory">
+                            <option value="Personal">Personal</option>
+                            <option value="Trabajo">Trabajo</option>
+                            <option value="Finanzas">Finanzas</option>
+                            <option value="Redes">Redes Sociales</option>
+                        </select>
+                    </div>
+                    <input type="url" id="newUrl" placeholder="URL (opcional)" style="margin-top: 10px;">
+                    <button id="addPasswordBtn" style="width: 100%; margin-top: 15px;">💾 Guardar Contraseña</button>
+                </div>
+                
+                <div id="passwordList"></div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button id="exportVaultBtn" class="secondary" style="flex: 1;">📤 Exportar Backup</button>
+                    <button id="importVaultBtn" class="secondary" style="flex: 1;">📥 Importar Backup</button>
+                    <input type="file" id="vaultFileInput" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PANEL ESTEGANOGRAFÍA ========== -->
+    <div class="panel" id="panel-stegano">
+        <div class="card">
+            <div class="card-header">🌐 Ocultar Mensaje en Imagen PNG</div>
+            
+            <div class="drop-zone" id="imageDropZone">
+                🖼️ Arrastra una imagen PNG o haz clic
+                <input type="file" id="imageInput" accept="image/png" style="display: none;">
+            </div>
+            
+            <div id="imagePreview" style="margin-top: 15px; text-align: center;"></div>
+            
+            <label style="margin-top: 20px;">💬 Mensaje a Ocultar</label>
+            <textarea id="steganoMessage" rows="3" placeholder="Escribe el mensaje secreto..."></textarea>
+            <div id="steganoCapacity" style="margin-top: 5px; font-size: 0.85rem; opacity: 0.7;"></div>
+            
+            <button id="hideMessageBtn" style="width: 100%; margin-top: 15px;">🔒 Ocultar Mensaje</button>
+            
+            <hr style="margin: 25px 0; border-color: var(--border);">
+            
+            <label>🔓 Extraer Mensaje Oculto</label>
+            <div class="drop-zone" id="steganoExtractZone" style="padding: 20px;">
+                🖼️ Arrastra imagen con mensaje oculto
+                <input type="file" id="steganoExtractInput" accept="image/png" style="display: none;">
+            </div>
+            <button id="extractMessageBtn" class="secondary" style="width: 100%; margin-top: 15px;">🔍 Extraer Mensaje</button>
+            <div id="extractedMessage" class="output-box" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- ========== PANEL ANÁLISIS CRIPTOGRÁFICO ========== -->
+    <div class="panel" id="panel-analysis">
+        <div class="card">
+            <div class="card-header">📊 Análisis de Texto Cifrado</div>
+            
+            <textarea id="analysisText" rows="4" placeholder="Pega texto para analizar..."></textarea>
+            <button id="analyzeBtn" style="width: 100%; margin-top: 15px;">🔬 Analizar</button>
+            
+            <div id="analysisResults" style="margin-top: 20px;">
+                <div class="grid-2">
+                    <div class="output-box">
+                        <strong>📈 Índice de Coincidencia (IC)</strong>
+                        <div id="icResult" style="font-size: 1.5rem; margin-top: 10px;">-</div>
+                        <small>IC esperado: Español ~0.077, Aleatorio ~0.038</small>
+                    </div>
+                    <div class="output-box">
+                        <strong>🎲 Entropía de Shannon</strong>
+                        <div id="entropyResult" style="font-size: 1.5rem; margin-top: 10px;">-</div>
+                        <small>Máximo: 4.7 bits/carácter</small>
+                    </div>
+                </div>
+                
+                <div class="output-box" style="margin-top: 15px;">
+                    <strong>🔍 Test de Friedman (Vigenère)</strong>
+                    <div id="friedmanResult" style="margin-top: 10px;"></div>
+                </div>
+                
+                <div class="output-box" style="margin-top: 15px;">
+                    <strong>📊 Frecuencia de Caracteres</strong>
+                    <div id="freqChart" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PANEL MENSAJES CON EXPIRACIÓN ========== -->
+    <div class="panel" id="panel-expiry">
+        <div class="card">
+            <div class="card-header">⏱️ Mensaje con Fecha de Caducidad</div>
+            
+            <label>💬 Mensaje Secreto</label>
+            <textarea id="expiryMessage" rows="3" placeholder="Este mensaje se autodestruirá..."></textarea>
+            
+            <label style="margin-top: 15px;">📅 Fecha de Expiración</label>
+            <input type="datetime-local" id="expiryDate">
+            
+            <label style="margin-top: 15px;">🔐 Clave (opcional)</label>
+            <input type="password" id="expiryPassword" placeholder="Clave adicional para mayor seguridad">
+            
+            <button id="createExpiryMessageBtn" style="width: 100%; margin-top: 15px;">🔒 Crear Mensaje con Expiración</button>
+            
+            <div id="expiryCreated" class="output-box" style="margin-top: 15px;"></div>
+            
+            <hr style="margin: 25px 0; border-color: var(--border);">
+            
+            <label>🔓 Descifrar Mensaje Temporal</label>
+            <textarea id="expiryCiphertext" rows="3" placeholder="Pega el mensaje cifrado con expiración..."></textarea>
+            <input type="password" id="expiryDecryptPassword" placeholder="Clave (si se usó)" style="margin-top: 10px;">
+            <button id="decryptExpiryBtn" class="secondary" style="width: 100%; margin-top: 15px;">🔎 Descifrar</button>
+            <div id="expiryDecrypted" class="output-box" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- ========== PANEL BLOCKCHAIN DE INTEGRIDAD ========== -->
+    <div class="panel" id="panel-blockchain">
+        <div class="card">
+            <div class="card-header">📜 Blockchain de Integridad (Merkle Tree)</div>
+            
+            <label>📄 Documentos para Sellado</label>
+            <div class="drop-zone" id="blockchainDropZone" style="padding: 20px;">
+                📂 Arrastra uno o más archivos aquí
+                <input type="file" id="blockchainFileInput" multiple style="display: none;">
+            </div>
+            
+            <div id="blockchainFileList" style="margin-top: 15px;"></div>
+            
+            <button id="createMerkleRootBtn" style="width: 100%; margin-top: 15px;">🌳 Crear Raíz Merkle (Sello de Tiempo)</button>
+            
+            <div id="merkleRootResult" class="output-box" style="margin-top: 15px;"></div>
+            
+            <hr style="margin: 25px 0; border-color: var(--border);">
+            
+            <label>🔍 Verificar Integridad de Documento</label>
+            <div class="grid-2">
+                <div>
+                    <label>Archivo a Verificar</label>
+                    <input type="file" id="verifyFileInput">
+                </div>
+                <div>
+                    <label>Raíz Merkle Original</label>
+                    <input id="originalMerkleRoot" placeholder="Pega la raíz Merkle...">
+                </div>
+            </div>
+            <button id="verifyIntegrityBtn" class="secondary" style="width: 100%; margin-top: 15px;">✅ Verificar Integridad</button>
+            <div id="verifyResult" class="output-box" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ==================== SISTEMA COMPLETO PRIVACRYPT ULTIMATE ====================
+(function(){
+    "use strict";
+    
+    // ---------- VARIABLES GLOBALES ----------
+    let currentRSAKeyPair = null;
+    let vaultData = [];
+    let vaultUnlocked = false;
+    let masterKey = null;
+    let selectedFile = null;
+    let selectedImage = null;
+    let blockchainFiles = [];
+    
+    // ---------- UTILIDADES ----------
+    function ab2str(buf) { return String.fromCharCode.apply(null, new Uint8Array(buf)); }
+    function str2ab(str) { const buf = new ArrayBuffer(str.length); const view = new Uint8Array(buf); for(let i=0; i<str.length; i++) view[i] = str.charCodeAt(i); return buf; }
+    function arrayBufferToBase64(buffer) { return btoa(String.fromCharCode(...new Uint8Array(buffer))); }
+    function base64ToArrayBuffer(base64) { return Uint8Array.from(atob(base64), c => c.charCodeAt(0)).buffer; }
+    
+    // ---------- CLASE CORE ORIGINAL ----------
+    class PrivaCryptCore {
+        constructor(text) { this.words = []; this.updateWords(text); }
+        updateWords(text) {
+            if (!text?.trim()) { this.words = []; return; }
+            const clean = text.toLowerCase().replace(/[.,;:!¡¿?()"'-]/g, ' ');
+            this.words = clean.split(/\s+/).filter(w => w.length > 0);
+            document.getElementById('wordCount').textContent = this.words.length;
+        }
+        vigenere(text, key, decrypt = false) {
+            if (!text) return "";
+            let res = "", j = 0;
+            let cleanKey = (key || "a").toLowerCase().replace(/[^a-z]/g, "") || "a";
+            for (let ch of text) {
+                let lower = ch.toLowerCase();
+                let code = lower.charCodeAt(0);
+                if (code >= 97 && code <= 122) {
+                    let shift = cleanKey[j % cleanKey.length].charCodeAt(0) - 97;
+                    if (decrypt) shift = (26 - shift) % 26;
+                    let newChar = String.fromCharCode((code - 97 + shift) % 26 + 97);
+                    res += (ch === ch.toUpperCase() && ch !== lower) ? newChar.toUpperCase() : newChar;
+                    j++;
+                } else res += ch;
+            }
+            return res;
+        }
+        caesar(text, shift, decrypt = false) {
+            let delta = (decrypt ? -shift : shift) % 26;
+            return [...text].map(ch => {
+                let code = ch.charCodeAt(0);
+                if (code >= 65 && code <= 90) return String.fromCharCode(((code - 65 + delta + 26) % 26) + 65);
+                if (code >= 97 && code <= 122) return String.fromCharCode(((code - 97 + delta + 26) % 26) + 97);
+                return ch;
+            }).join('');
+        }
+        async aesProcess(message, keyString, decrypt = false) {
+            if (!keyString) return "❌ Clave AES requerida";
+            try {
+                const encoder = new TextEncoder();
+                const decoder = new TextDecoder();
+                if (!decrypt) {
+                    const salt = crypto.getRandomValues(new Uint8Array(16));
+                    const iv = crypto.getRandomValues(new Uint8Array(12));
+                    const keyMaterial = await crypto.subtle.importKey("raw", encoder.encode(keyString), "PBKDF2", false, ["deriveKey"]);
+                    const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: 250000, hash: "SHA-256" }, keyMaterial, { name: "AES-GCM", length: 256 }, false, ["encrypt"]);
+                    const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, encoder.encode(message));
+                    const combined = new Uint8Array(salt.length + iv.length + ciphertext.byteLength);
+                    combined.set(salt, 0); combined.set(iv, salt.length); combined.set(new Uint8Array(ciphertext), salt.length + iv.length);
+                    return arrayBufferToBase64(combined);
+                } else {
+                    const raw = base64ToArrayBuffer(message);
+                    const salt = raw.slice(0, 16); const iv = raw.slice(16, 28); const data = raw.slice(28);
+                    const keyMaterial = await crypto.subtle.importKey("raw", encoder.encode(keyString), "PBKDF2", false, ["deriveKey"]);
+                    const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: 250000, hash: "SHA-256" }, keyMaterial, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+                    const decrypted = await crypto.subtle.decrypt({ name: "AES-GCM", iv: key, additionalData: undefined }, key, data);
+                    return decoder.decode(decrypted);
+                }
+            } catch (e) { return `⚠️ Error AES: ${decrypt?'clave/datos incorrectos':'fallo'}`; }
+        }
+        async process(msg, mode, shift, key, decrypt = false) {
+            if (!msg) return "";
+            if (mode === "aes-256") return await this.aesProcess(msg, key, decrypt);
+            if (mode === "vigenere") return this.vigenere(msg, key, decrypt);
+            if (mode === "caesar") return this.caesar(msg, Number(shift)||0, decrypt);
+            if (this.words.length === 0) return "⚠️ Sin texto base";
+            const s = Number(shift)||0;
+            if (!decrypt) {
+                return [...msg.toLowerCase()].map(c => {
+                    if (c === ' ') return '␣';
+                    if (mode === 'classic') { let i = this.words.findIndex(w => w[0]===c); return i>=0 ? i+1+s : '?'; }
+                    if (mode === 'dict') { let i = this.words.findIndex(w => w===c); return i>=0 ? i+1+s : '?'; }
+                    for (let i=0; i<this.words.length; i++) { let p = this.words[i].indexOf(c); if(p>=0) return `${i+1+s}:${p+1}`; }
+                    return '?';
+                }).join(' ');
+            } else {
+                return msg.split(/\s+/).map(tok => {
+                    if (tok === '␣') return ' ';
+                    if (mode === 'classic'||mode==='dict') { let v=parseInt(tok); if(isNaN(v))return'?'; let idx=v-1-s; return this.words[idx]? (mode==='classic'?this.words[idx][0]:this.words[idx]) : '?'; }
+                    let parts=tok.split(':'); if(parts.length!==2)return'?'; let wi=parseInt(parts[0])-1-s, ci=parseInt(parts[1])-1; return this.words[wi]?.[ci] || '?';
+                }).join('');
+            }
+        }
+    }
+    
+    const core = new PrivaCryptCore(document.getElementById('bookText')?.value || '');
+    
+    // ---------- RSA HÍBRIDO ----------
+    async function generateRSAKeyPair() {
+        const keyPair = await crypto.subtle.generateKey(
+            { name: "RSA-OAEP", modulusLength: 2048, publicExponent: new Uint8Array([1,0,1]), hash: "SHA-256" },
+            true, ["encrypt", "decrypt"]
+        );
+        const publicKey = await crypto.subtle.exportKey("spki", keyPair.publicKey);
+        const privateKey = await crypto.subtle.exportKey("pkcs8", keyPair.privateKey);
+        return {
+            publicKey: arrayBufferToBase64(publicKey),
+            privateKey: arrayBufferToBase64(privateKey)
+        };
+    }
+    
+    async function hybridEncrypt(message, publicKeyPEM) {
+        const aesKey = crypto.getRandomValues(new Uint8Array(32));
+        const iv = crypto.getRandomValues(new Uint8Array(12));
+        const publicKey = await crypto.subtle.importKey("spki", base64ToArrayBuffer(publicKeyPEM), { name: "RSA-OAEP", hash: "SHA-256" }, false, ["encrypt"]);
+        const encryptedAesKey = await crypto.subtle.encrypt({ name: "RSA-OAEP" }, publicKey, aesKey);
+        const aesCryptoKey = await crypto.subtle.importKey("raw", aesKey, "AES-GCM", false, ["encrypt"]);
+        const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, aesCryptoKey, new TextEncoder().encode(message));
+        const combined = new Uint8Array(encryptedAesKey.byteLength + iv.length + ciphertext.byteLength);
+        combined.set(new Uint8Array(encryptedAesKey), 0);
+        combined.set(iv, encryptedAesKey.byteLength);
+        combined.set(new Uint8Array(ciphertext), encryptedAesKey.byteLength + iv.length);
+        return arrayBufferToBase64(combined);
+    }
+    
+    async function hybridDecrypt(ciphertextB64, privateKeyPEM) {
+        const raw = base64ToArrayBuffer(ciphertextB64);
+        const encryptedAesKey = raw.slice(0, 256);
+        const iv = raw.slice(256, 268);
+        const ciphertext = raw.slice(268);
+        const privateKey = await crypto.subtle.importKey("pkcs8", base64ToArrayBuffer(privateKeyPEM), { name: "RSA-OAEP", hash: "SHA-256" }, false, ["decrypt"]);
+        const aesKey = await crypto.subtle.decrypt({ name: "RSA-OAEP" }, privateKey, encryptedAesKey);
+        const aesCryptoKey = await crypto.subtle.importKey("raw", aesKey, "AES-GCM", false, ["decrypt"]);
+        const decrypted = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, aesCryptoKey, ciphertext);
+        return new TextDecoder().decode(decrypted);
+    }
+    
+    // ---------- CIFRADO DE ARCHIVOS ----------
+    async function encryptFile(file, password) {
+        const data = await file.arrayBuffer();
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        const iv = crypto.getRandomValues(new Uint8Array(12));
+        const keyMaterial = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]);
+        const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: 250000, hash: "SHA-256" }, keyMaterial, { name: "AES-GCM", length: 256 }, false, ["encrypt"]);
+        const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, data);
+        const combined = new Uint8Array(salt.length + iv.length + ciphertext.byteLength);
+        combined.set(salt, 0); combined.set(iv, salt.length); combined.set(new Uint8Array(ciphertext), salt.length + iv.length);
+        return new Blob([combined], { type: 'application/octet-stream' });
+    }
+    
+    async function decryptFile(file, password) {
+        const raw = new Uint8Array(await file.arrayBuffer());
+        const salt = raw.slice(0, 16); const iv = raw.slice(16, 28); const data = raw.slice(28);
+        const keyMaterial = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]);
+        const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: 250000, hash: "SHA-256" }, keyMaterial, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+        const decrypted = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, data);
+        return new Blob([decrypted]);
+    }
+    
+    // ---------- ESTEGANOGRAFÍA LSB ----------
+    function hideMessageInImage(imageData, message) {
+        const binary = [...new TextEncoder().encode(message)].map(b => b.toString(2).padStart(8,'0')).join('') + '00000000';
+        const pixels = imageData.data;
+        if (binary.length > pixels.length) throw new Error('Mensaje demasiado largo para esta imagen');
+        for (let i = 0; i < binary.length; i++) {
+            pixels[i] = (pixels[i] & 0xFE) | parseInt(binary[i]);
+        }
+        return imageData;
+    }
+    
+    function extractMessageFromImage(imageData) {
+        const pixels = imageData.data;
+        let binary = '', bytes = [];
+        for (let i = 0; i < pixels.length; i++) {
+            binary += (pixels[i] & 1).toString();
+            if (binary.length === 8) {
+                const byte = parseInt(binary, 2);
+                if (byte === 0) break;
+                bytes.push(byte);
+                binary = '';
+            }
+        }
+        return new TextDecoder().decode(new Uint8Array(bytes));
+    }
+    
+    // ---------- ANÁLISIS CRIPTOGRÁFICO ----------
+    function calculateIC(text) {
+        const clean = text.toUpperCase().replace(/[^A-Z]/g, '');
+        if (clean.length < 2) return 0;
+        const freq = {}; let sum = 0;
+        for (let c of clean) freq[c] = (freq[c] || 0) + 1;
+        for (let c in freq) sum += freq[c] * (freq[c] - 1);
+        return sum / (clean.length * (clean.length - 1));
+    }
+    
+    function calculateEntropy(text) {
+        const freq = {}; let len = 0;
+        for (let c of text) { freq[c] = (freq[c] || 0) + 1; len++; }
+        return -Object.values(freq).reduce((sum, f) => { const p = f / len; return sum + p * Math.log2(p); }, 0);
+    }
+    
+    function friedmanTest(text) {
+        const clean = text.toUpperCase().replace(/[^A-Z]/g, '');
+        if (clean.length < 2) return 0;
+        const ic = calculateIC(text);
+        const kp = 0.067, kr = 0.0385;
+        const estimatedLength = (kp - kr) / (ic - kr);
+        return { ic, estimatedLength: Math.round(estimatedLength * 10) / 10 };
+    }
+    
+    // ---------- BLOCKCHAIN MERKLE ----------
+    async function calculateMerkleRoot(files) {
+        const hashes = await Promise.all(files.map(async f => {
+            const buffer = await f.arrayBuffer();
+            const hash = await crypto.subtle.digest('SHA-256', buffer);
+            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+        }));
+        while (hashes.length > 1) {
+            const newLevel = [];
+            for (let i = 0; i < hashes.length; i += 2) {
+                const combined = hashes[i] + (hashes[i+1] || hashes[i]);
+                const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(combined));
+                newLevel.push(Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join(''));
+            }
+            hashes.length = 0; hashes.push(...newLevel);
+        }
+        return hashes[0];
+    }
+    
+    // ---------- INICIALIZACIÓN UI ----------
+    function initTabs() {
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(`panel-${btn.dataset.tab}`).classList.add('active');
+            });
+        });
+    }
+    
+    function initCorePanel() {
+        const typeSelect = document.getElementById('typeSelect');
+        const modeSelect = document.getElementById('modeSelect');
+        
+        function updateModes() {
+            const type = typeSelect.value;
+            const modes = {
+                book: [['classic','📘 Primera letra'],['modern','🗺️ Coordenadas'],['dict','📖 Diccionario']],
+                classic: [['caesar','🔁 César'],['vigenere','🔑 Vigenère']],
+                military: [['aes-256','🛡️ AES-256']]
+            };
+            modeSelect.innerHTML = modes[type].map(([v,t]) => `<option value="${v}">${t}</option>`).join('');
+            updateVisibility();
+        }
+        
+        function updateVisibility() {
+            const type = typeSelect.value, mode = modeSelect.value;
+            document.getElementById('shiftGroup').style.display = (type==='classic'&&mode==='caesar')||type==='book' ? 'block' : 'none';
+            document.getElementById('keyGroup').style.display = mode==='vigenere' ? 'block' : 'none';
+            document.getElementById('aesKeyGroup').style.display = mode==='aes-256' ? 'block' : 'none';
+        }
+        
+        typeSelect.addEventListener('change', updateModes);
+        modeSelect.addEventListener('change', updateVisibility);
+        document.getElementById('bookText').addEventListener('input', e => core.updateWords(e.target.value));
+        
+        document.getElementById('encryptCoreBtn').addEventListener('click', async () => {
+            const msg = document.getElementById('messageInput').value;
+            const mode = modeSelect.value;
+            let key = mode==='vigenere' ? document.getElementById('keyInput').value : (mode==='aes-256' ? document.getElementById('aesKeyInput').value : '');
+            const shift = parseInt(document.getElementById('shiftInput').value)||0;
+            const result = await core.process(msg, mode, shift, key, false);
+            document.getElementById('coreEncResult').textContent = result;
+        });
+        
+        document.getElementById('decryptCoreBtn').addEventListener('click', async () => {
+            const code = document.getElementById('codeInput').value;
+            const mode = modeSelect.value;
+            let key = mode==='vigenere' ? document.getElementById('keyInput').value : (mode==='aes-256' ? document.getElementById('aesKeyInput').value : '');
+            const shift = parseInt(document.getElementById('shiftInput').value)||0;
+            const result = await core.process(code, mode, shift, key, true);
+            document.getElementById('coreDecResult').textContent = result;
+        });
+        
+        updateModes();
+    }
+    
+    function initHybridPanel() {
+        document.getElementById('generateRSAKeysBtn').addEventListener('click', async () => {
+            currentRSAKeyPair = await generateRSAKeyPair();
+            document.getElementById('rsaPublicKey').value = currentRSAKeyPair.publicKey;
+            document.getElementById('rsaPrivateKey').value = currentRSAKeyPair.privateKey;
+        });
+        
+        document.getElementById('copyRSAPublicBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(document.getElementById('rsaPublicKey').value);
+            alert('Clave pública copiada');
+        });
+        
+        document.getElementById('hybridEncryptBtn').addEventListener('click', async () => {
+            try {
+                const result = await hybridEncrypt(
+                    document.getElementById('hybridMessage').value,
+                    document.getElementById('recipientPublicKey').value
+                );
+                document.getElementById('hybridEncResult').textContent = result;
+            } catch(e) { alert('Error: ' + e.message); }
+        });
+        
+        document.getElementById('hybridDecryptBtn').addEventListener('click', async () => {
+            try {
+                const result = await hybridDecrypt(
+                    document.getElementById('hybridCiphertext').value,
+                    document.getElementById('myPrivateKey').value
+                );
+                document.getElementById('hybridDecResult').textContent = result;
+            } catch(e) { alert('Error: Clave incorrecta o datos corruptos'); }
+        });
+    }
+    
+    function initFilePanel() {
+        const dropZone = document.getElementById('fileDropZone');
+        const fileInput = document.getElementById('fileInput');
+        
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            handleFileSelect(e.dataTransfer.files[0]);
+        });
+        fileInput.addEventListener('change', e => handleFileSelect(e.target.files[0]));
+        
+        function handleFileSelect(file) {
+            if (!file) return;
+            selectedFile = file;
+            document.getElementById('fileInfo').style.display = 'block';
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = (file.size / 1024).toFixed(2) + ' KB';
+        }
+        
+        document.getElementById('encryptFileBtn').addEventListener('click', async () => {
+            if (!selectedFile) return alert('Selecciona un archivo');
+            const password = document.getElementById('filePassword').value;
+            if (!password) return alert('Ingresa una clave');
+            try {
+                const encrypted = await encryptFile(selectedFile, password);
+                const url = URL.createObjectURL(encrypted);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = selectedFile.name + '.encrypted';
+                a.click();
+                document.getElementById('fileResult').textContent = '✅ Archivo cifrado correctamente';
+            } catch(e) { alert('Error: ' + e.message); }
+        });
+        
+        document.getElementById('decryptFileBtn').addEventListener('click', async () => {
+            if (!selectedFile) return alert('Selecciona un archivo .encrypted');
+            const password = document.getElementById('filePassword').value;
+            if (!password) return alert('Ingresa la clave');
+            try {
+                const decrypted = await decryptFile(selectedFile, password);
+                const url = URL.createObjectURL(decrypted);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = selectedFile.name.replace('.encrypted', '');
+                a.click();
+                document.getElementById('fileResult').textContent = '✅ Archivo descifrado correctamente';
+            } catch(e) { alert('Error: Clave incorrecta o archivo corrupto'); }
+        });
+    }
+    
+    function initSteganoPanel() {
+        const imageDrop = document.getElementById('imageDropZone');
+        const imageInput = document.getElementById('imageInput');
+        let originalImage = null;
+        
+        imageDrop.addEventListener('click', () => imageInput.click());
+        imageDrop.addEventListener('dragover', e => { e.preventDefault(); imageDrop.classList.add('dragover'); });
+        imageDrop.addEventListener('dragleave', () => imageDrop.classList.remove('dragover'));
+        imageDrop.addEventListener('drop', e => {
+            e.preventDefault();
+            imageDrop.classList.remove('dragover');
+            handleImageSelect(e.dataTransfer.files[0]);
+        });
+        imageInput.addEventListener('change', e => handleImageSelect(e.target.files[0]));
+        
+        function handleImageSelect(file) {
+            if (!file || file.type !== 'image/png') return alert('Solo imágenes PNG');
+            selectedImage = file;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '300px';
+                img.style.borderRadius = '10px';
+                document.getElementById('imagePreview').innerHTML = '';
+                document.getElementById('imagePreview').appendChild(img);
+                
+                // Calcular capacidad
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    originalImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const capacity = Math.floor((originalImage.data.length / 8) - 1);
+                    document.getElementById('steganoCapacity').textContent = `Capacidad máxima: ${capacity} caracteres`;
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        document.getElementById('hideMessageBtn').addEventListener('click', () => {
+            if (!originalImage) return alert('Carga una imagen primero');
+            const message = document.getElementById('steganoMessage').value;
+            if (!message) return alert('Escribe un mensaje');
+            try {
+                const modified = hideMessageInImage(originalImage, message);
+                const canvas = document.createElement('canvas');
+                canvas.width = originalImage.width;
+                canvas.height = originalImage.height;
+                canvas.getContext('2d').putImageData(modified, 0, 0);
+                
+                canvas.toBlob(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'imagen_oculta.png';
+                    a.click();
+                    alert('✅ Mensaje ocultado correctamente');
+                });
+            } catch(e) { alert('Error: ' + e.message); }
+        });
+        
+        // Extracción
+        const extractZone = document.getElementById('steganoExtractZone');
+        const extractInput = document.getElementById('steganoExtractInput');
+        extractZone.addEventListener('click', () => extractInput.click());
+        extractInput.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    try {
+                        const message = extractMessageFromImage(imageData);
+                        document.getElementById('extractedMessage').textContent = message || '(No se encontró mensaje)';
+                    } catch(ex) { alert('Error al extraer'); }
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+    
+    function initAnalysisPanel() {
+        document.getElementById('analyzeBtn').addEventListener('click', () => {
+            const text = document.getElementById('analysisText').value;
+            if (!text) return;
+            
+            const ic = calculateIC(text);
+            const entropy = calculateEntropy(text);
+            const friedman = friedmanTest(text);
+            
+            document.getElementById('icResult').textContent = ic.toFixed(4);
+            document.getElementById('entropyResult').textContent = entropy.toFixed(4) + ' bits';
+            document.getElementById('friedmanResult').innerHTML = `
+                IC: ${friedman.ic.toFixed(4)}<br>
+                Longitud estimada de clave: ${friedman.estimatedLength} caracteres
+            `;
+            
+            // Frecuencia
+            const freq = {};
+            const clean = text.toUpperCase().replace(/[^A-Z]/g, '');
+            for (let c of clean) freq[c] = (freq[c] || 0) + 1;
+            const sorted = Object.entries(freq).sort((a,b) => b[1] - a[1]).slice(0, 10);
+            document.getElementById('freqChart').innerHTML = sorted.map(([c,n]) => 
+                `<div>${c}: ${n} (${((n/clean.length)*100).toFixed(1)}%)</div>`
+            ).join('');
+        });
+    }
+    
+    function initExpiryPanel() {
+        document.getElementById('createExpiryMessageBtn').addEventListener('click', async () => {
+            const message = document.getElementById('expiryMessage').value;
+            const expiry = new Date(document.getElementById('expiryDate').value).getTime();
+            const password = document.getElementById('expiryPassword').value;
+            
+            if (!message || !expiry) return alert('Completa todos los campos');
+            if (expiry < Date.now()) return alert('La fecha debe ser futura');
+            
+            const payload = JSON.stringify({ msg: message, exp: expiry });
+            let result;
+            if (password) {
+                result = await core.aesProcess(payload, password, false);
+            } else {
+                result = btoa(payload);
+            }
+            document.getElementById('expiryCreated').textContent = result;
+        });
+        
+        document.getElementById('decryptExpiryBtn').addEventListener('click', async () => {
+            const ciphertext = document.getElementById('expiryCiphertext').value;
+            const password = document.getElementById('expiryDecryptPassword').value;
+            
+            try {
+                let payload;
+                if (password) {
+                    payload = await core.aesProcess(ciphertext, password, true);
+                } else {
+                    payload = atob(ciphertext);
+                }
+                const data = JSON.parse(payload);
+                if (data.exp < Date.now()) {
+                    document.getElementById('expiryDecrypted').textContent = '⏰ Este mensaje ha EXPIRADO';
+                } else {
+                    const remaining = Math.round((data.exp - Date.now()) / (1000*60*60*24));
+                    document.getElementById('expiryDecrypted').textContent = 
+                        `✅ Mensaje (válido por ${remaining} días):\n${data.msg}`;
+                }
+            } catch(e) {
+                document.getElementById('expiryDecrypted').textContent = '❌ Error al descifrar';
+            }
+        });
+    }
+    
+    function initBlockchainPanel() {
+        const dropZone = document.getElementById('blockchainDropZone');
+        const fileInput = document.getElementById('blockchainFileInput');
+        
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            blockchainFiles = Array.from(e.dataTransfer.files);
+            updateBlockchainFileList();
+        });
+        fileInput.addEventListener('change', e => {
+            blockchainFiles = Array.from(e.target.files);
+            updateBlockchainFileList();
+        });
+        
+        function updateBlockchainFileList() {
+            document.getElementById('blockchainFileList').innerHTML = blockchainFiles.map(f => 
+                `<div>📄 ${f.name} (${(f.size/1024).toFixed(1)} KB)</div>`
+            ).join('');
+        }
+        
+        document.getElementById('createMerkleRootBtn').addEventListener('click', async () => {
+            if (blockchainFiles.length === 0) return alert('Selecciona archivos');
+            const root = await calculateMerkleRoot(blockchainFiles);
+            const timestamp = new Date().toISOString();
+            document.getElementById('merkleRootResult').innerHTML = `
+                <strong>🌳 Raíz Merkle:</strong><br>
+                <code>${root}</code><br><br>
+                <strong>⏱️ Sello de tiempo:</strong> ${timestamp}<br>
+                <small>Guarda esta raíz para verificar integridad futura</small>
+            `;
+        });
+        
+        document.getElementById('verifyIntegrityBtn').addEventListener('click', async () => {
+            const file = document.getElementById('verifyFileInput').files[0];
+            const originalRoot = document.getElementById('originalMerkleRoot').value;
+            if (!file || !originalRoot) return alert('Selecciona archivo y pega la raíz original');
+            
+            const buffer = await file.arrayBuffer();
+            const hash = await crypto.subtle.digest('SHA-256', buffer);
+            const fileHash = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+            
+            // Verificación simplificada (un solo archivo)
+            const calculatedRoot = await calculateMerkleRoot([file]);
+            
+            if (calculatedRoot === originalRoot) {
+                document.getElementById('verifyResult').innerHTML = `
+                    ✅ <strong>INTEGRIDAD VERIFICADA</strong><br>
+                    El archivo NO ha sido modificado.<br>
+                    Hash: ${fileHash}
+                `;
+            } else {
+                document.getElementById('verifyResult').innerHTML = `
+                    ❌ <strong>INTEGRIDAD COMPROMETIDA</strong><br>
+                    El archivo ha sido modificado o no corresponde.
+                `;
+            }
+        });
+    }
+    
+    // Inicializar todo
+    initTabs();
+    initCorePanel();
+    initHybridPanel();
+    initFilePanel();
+    initSteganoPanel();
+    initAnalysisPanel();
+    initExpiryPanel();
+    initBlockchainPanel();
+    
+})();
+</script>
+</body>
+</html>
