@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pau-297.github.io/PrivaCrypt/sitemap.xml
