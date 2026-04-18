@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    
+    <!-- SEO Básico para GitHub Pages -->
+    <meta name="description" content="PrivaCrypt - Herramienta de cifrado militar AES-256, Sistema Libro y esteganografía. 100% cliente, sin registro, open source.">
+    <meta name="theme-color" content="#0a0e17">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="PrivaCrypt · Cifrado Militar en tu Navegador">
+    <meta property="og:description" content="Cifra mensajes con Sistema Libro, AES-256 y oculta información en imágenes. 100% privado y sin backend.">
+    <meta property="og:type" content="website">
+    
+    <title>PrivaCrypt · Sistema Libro + AES-256</title>
+    
+    <!-- Fuente Inter (única dependencia externa, fallback seguro) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== ESTILOS COMPLETOS (INLINE) ========== */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #141a2b;
+            --bg-tertiary: #1a2335;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent: #00d4ff;
+            --accent-glow: rgba(0, 212, 255, 0.25);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: rgba(255, 255, 255, 0.06);
+            --glass-bg: rgba(20, 26, 43, 0.85);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --radius-xl: 24px;
+            --radius-lg: 18px;
+            --radius-md: 14px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            background-image: radial-gradient(ellipse at 20% 0%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding: 24px 20px 40px;
+        }
+
+        .app-container { max-width: 1200px; margin: 0 auto; }
+
+        .app-header { text-align: center; margin-bottom: 32px; }
+        .logo-wrapper { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+        .logo-wrapper h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; background: linear-gradient(135deg, #00d4ff, #7dd3fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .subtitle { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .main-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; padding: 6px; background: var(--glass-bg); backdrop-filter: blur(12px); border-radius: 60px; border: 1px solid var(--border); flex-wrap: wrap; }
+        .nav-btn { padding: 12px 28px; background: transparent; border: none; color: var(--text-secondary); font-weight: 600; border-radius: 40px; cursor: pointer; transition: var(--transition); font-size: clamp(0.8rem, 2vw, 0.95rem); }
+        .nav-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+        .nav-btn.active { background: var(--accent); color: var(--bg-primary); box-shadow: 0 8px 20px var(--accent-glow); }
+
+        .panel { display: none; animation: fadeIn 0.3s ease; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { background: var(--glass-bg); backdrop-filter: blur(12px); border-radius: var(--radius-xl); padding: clamp(20px, 4vw, 28px); border: 1px solid var(--border); box-shadow: var(--shadow-lg); margin-bottom: 24px; }
+        .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+        .card-header h2 { font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 700; color: var(--accent); }
+        .badge { padding: 6px 14px; background: rgba(0,212,255,0.1); border: 1px solid var(--accent); border-radius: 30px; font-size: 0.75rem; font-weight: 600; }
+
+        .algo-selector { display: flex; gap: 8px; margin-bottom: 24px; padding: 6px; background: var(--bg-tertiary); border-radius: var(--radius-lg); flex-wrap: wrap; }
+        .algo-btn { flex: 1; min-width: 100px; padding: 12px; background: transparent; border: none; color: var(--text-secondary); font-weight: 600; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); }
+        .algo-btn.active { background: var(--accent); color: var(--bg-primary); box-shadow: 0 4px 12px var(--accent-glow); }
+
+        .system-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+        select, input[type="number"], input[type="password"], input[type="text"], input[type="datetime-local"] {
+            width: 100%; padding: 12px 16px; background: var(--bg-tertiary); border: 1.5px solid var(--border);
+            border-radius: var(--radius-md); color: var(--text-primary); font-size: 0.95rem;
+        }
+        select:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+        .io-container { display: flex; flex-direction: column; gap: 20px; }
+        textarea { width: 100%; min-height: 120px; padding: 18px; background: var(--bg-tertiary); border: 1.5px solid var(--border); border-radius: var(--radius-lg); color: var(--text-primary); font-size: 1rem; font-family: 'SF Mono', 'Fira Code', monospace; resize: vertical; }
+        textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-glow); }
+
+        .action-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .btn-primary, .btn-secondary, .btn-icon { padding: 14px 28px; border-radius: 40px; font-weight: 700; cursor: pointer; transition: var(--transition); border: none; font-size: clamp(0.9rem, 2vw, 1rem); }
+        .btn-primary { background: var(--accent); color: var(--bg-primary); box-shadow: 0 8px 20px var(--accent-glow); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px var(--accent-glow); }
+        .btn-secondary { background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--accent); background: rgba(0,212,255,0.05); }
+        .btn-icon { width: 48px; height: 48px; padding: 0; background: var(--bg-tertiary); border: 1.5px solid var(--border); color: var(--text-primary); }
+
+        .output-area { position: relative; }
+        .btn-copy { position: absolute; bottom: 12px; right: 12px; padding: 8px 16px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 20px; color: var(--text-secondary); cursor: pointer; font-size: 0.8rem; }
+
+        .history-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+        .history-header { display: flex; justify-content: space-between; margin-bottom: 16px; align-items: center; }
+        .history-list { max-height: 200px; overflow-y: auto; }
+        .history-item { padding: 12px; background: var(--bg-tertiary); border-radius: var(--radius-md); margin-bottom: 8px; border-left: 3px solid var(--accent); display: flex; gap: 12px; align-items: center; font-size: 0.85rem; flex-wrap: wrap; }
+
+        .drop-zone { border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: clamp(30px, 5vw, 48px); text-align: center; cursor: pointer; margin-bottom: 24px; transition: var(--transition); }
+        .drop-zone:hover { border-color: var(--accent); background: rgba(0,212,255,0.03); }
+        .drop-zone.dragover { border-color: var(--accent); background: rgba(0,212,255,0.05); }
+        .drop-content svg { color: var(--text-secondary); opacity: 0.5; margin-bottom: 16px; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .result-box { margin-top: 16px; padding: 16px; background: var(--bg-tertiary); border-radius: var(--radius-md); word-break: break-all; font-size: 0.9rem; }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); padding: 14px 28px; background: var(--bg-secondary); border: 1px solid var(--accent); border-radius: 60px; z-index: 1000; box-shadow: var(--shadow-lg); }
+        .toast.hidden { display: none; }
+        .hidden { display: none !important; }
+        .book-section { margin-bottom: 20px; }
+        .word-count { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+        .btn-text { background: none; border: none; color: var(--accent); cursor: pointer; font-size: 0.85rem; }
+        .capacity-info { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+        label { color: var(--text-secondary); font-size: 0.8rem; display: block; margin-bottom: 4px; }
+
+        /* Fallback para navegadores sin backdrop-filter */
+        @supports not (backdrop-filter: blur(12px)) {
+            .card, .main-nav { background: var(--bg-secondary); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-wrapper">
+                <!-- Logo inline SVG -->
+                <svg width="48" height="48" viewBox="0 0 100 100" aria-hidden="true">
+                    <rect width="100" height="100" rx="24" fill="url(#grad)"/>
+                    <defs><linearGradient id="grad"><stop stop-color="#00d4ff"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+                    <path d="M50 28c-6.6 0-12 5.4-12 12v6h24v-6c0-6.6-5.4-12-12-12zm-8 18v-6c0-4.4 3.6-8 8-8s8 3.6 8 8v6h-16z" fill="#0a0e17"/>
+                    <rect x="38" y="52" width="24" height="24" rx="4" fill="#0a0e17"/>
+                    <circle cx="50" cy="64" r="3" fill="#00d4ff"/>
+                </svg>
+                <h1>PrivaCrypt</h1>
+            </div>
+            <p class="subtitle">Sistema Libro · AES-256 · Esteganografía · 100% Cliente</p>
+        </header>
+
+        <nav class="main-nav" role="tablist">
+            <button class="nav-btn active" data-panel="cipher" role="tab">📖 Cifrado Core</button>
+            <button class="nav-btn" data-panel="stegano" role="tab">🌐 Esteganografía</button>
+            <button class="nav-btn" data-panel="files" role="tab">📁 Archivos</button>
+            <button class="nav-btn" data-panel="tools" role="tab">🛠️ Herramientas</button>
+        </nav>
+
+        <!-- ==================== PANEL CIFRADO ==================== -->
+        <section id="panel-cipher" class="panel active" role="tabpanel">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Sistema de Cifrado Principal</h2>
+                    <div class="badge" id="securityBadge">🔒 Alta seguridad</div>
+                </div>
+
+                <div class="system-selector">
+                    <div>
+                        <label>Sistema</label>
+                        <select id="typeSelect" aria-label="Sistema de cifrado">
+                            <option value="book">📖 Sistema Libro (Principal)</option>
+                            <option value="classic">🏛️ Clásicos</option>
+                            <option value="military">⚡ AES-256 Militar</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Algoritmo</label>
+                        <select id="modeSelect" aria-label="Algoritmo específico"></select>
+                    </div>
+                </div>
+
+                <div id="bookSection" class="book-section">
+                    <label>📚 Texto Base (Libro Clave)</label>
+                    <textarea id="bookText" rows="3" placeholder="Pega aquí el texto que servirá como libro clave...">El arte de la guerra es la disciplina más importante. El sigilo protege los secretos del reino. Las murallas eran altas y los guardianes vigilaban sin descanso.</textarea>
+                    <div class="word-count">Palabras cargadas: <span id="wordCount">0</span></div>
+                </div>
+
+                <div id="shiftGroup" style="margin-bottom:16px;">
+                    <label>🔢 Desplazamiento</label>
+                    <input type="number" id="shiftInput" value="3" min="0" max="100" aria-label="Desplazamiento">
+                </div>
+
+                <div id="keyGroup" style="margin-bottom:16px;display:none;">
+                    <label>🔑 Clave Vigenère</label>
+                    <input type="text" id="keyInput" value="PRIVACRYPT" aria-label="Clave Vigenère">
+                </div>
+
+                <div id="aesKeyGroup" style="margin-bottom:16px;display:none;">
+                    <label>🔐 Clave AES-256</label>
+                    <input type="password" id="aesKeyInput" placeholder="Contraseña segura" aria-label="Clave AES-256">
+                </div>
+
+                <div class="io-container">
+                    <div class="input-area">
+                        <label>Mensaje</label>
+                        <textarea id="cipherInput" placeholder="Escribe tu mensaje..." aria-label="Mensaje de entrada"></textarea>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="encryptBtn" class="btn-primary">🔒 Cifrar</button>
+                        <button id="swapBtn" class="btn-icon" title="Intercambiar" aria-label="Intercambiar entrada y salida">⇄</button>
+                        <button id="decryptBtn" class="btn-secondary">🔓 Descifrar</button>
+                    </div>
+                    <div class="output-area">
+                        <label>Resultado</label>
+                        <textarea id="cipherOutput" readonly placeholder="El resultado aparecerá aquí..." aria-label="Resultado"></textarea>
+                        <button id="copyOutputBtn" class="btn-copy">📋 Copiar</button>
+                    </div>
+                </div>
+
+                <div class="history-section">
+                    <div class="history-header">
+                        <h3>📜 Historial</h3>
+                        <button id="clearHistoryBtn" class="btn-text">Limpiar</button>
+                    </div>
+                    <div id="historyList" class="history-list" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PANEL ESTEGANOGRAFÍA ==================== -->
+        <section id="panel-stegano" class="panel" role="tabpanel">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Esteganografía LSB</h2>
+                    <span class="badge">PNG/JPG · Sin pérdida</span>
+                </div>
+                <div class="drop-zone" id="steganoDropZone">
+                    <div class="drop-content">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                            <path d="M4 16l4-4 4 4 4-4 4 4M4 20h16M4 4h16v16H4z"/>
+                        </svg>
+                        <p>Arrastra una imagen o haz clic para seleccionar</p>
+                        <span id="steganoFileInfo"></span>
+                    </div>
+                    <input type="file" id="steganoFileInput" accept="image/png,image/jpeg,image/jpg" hidden>
+                </div>
+                <canvas id="steganoCanvas" style="display:none;"></canvas>
+                <div class="io-container">
+                    <textarea id="steganoMessage" placeholder="Mensaje secreto a ocultar..." aria-label="Mensaje esteganográfico"></textarea>
+                    <div id="capacityInfo" class="capacity-info"></div>
+                    <div class="action-buttons">
+                        <button id="hideStegBtn" class="btn-primary">🔒 Ocultar Mensaje</button>
+                        <button id="extractStegBtn" class="btn-secondary">🔍 Extraer Mensaje</button>
+                    </div>
+                </div>
+                <div id="steganoResult" class="result-box hidden"></div>
+            </div>
+        </section>
+
+        <!-- ==================== PANEL ARCHIVOS ==================== -->
+        <section id="panel-files" class="panel" role="tabpanel">
+            <div class="card">
+                <div class="card-header"><h2>Cifrado de Archivos (AES-256-GCM)</h2></div>
+                <div class="drop-zone" id="fileDropZone">
+                    <div class="drop-content">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
+                            <path d="M14 2v6h6"/>
+                        </svg>
+                        <p>Arrastra cualquier archivo aquí</p>
+                        <span id="fileInfo"></span>
+                    </div>
+                    <input type="file" id="fileInput" hidden>
+                </div>
+                <input type="password" id="filePassword" placeholder="Contraseña para cifrar/descifrar" style="width:100%; padding:14px; margin:16px 0; background:var(--bg-tertiary); border:1px solid var(--border); border-radius:14px; color:white;" aria-label="Contraseña del archivo">
+                <div class="progress-bar hidden" id="fileProgress">
+                    <div class="progress-fill" id="fileProgressFill" style="height:6px;background:var(--accent);border-radius:10px;width:0%;transition:width 0.3s;"></div>
+                </div>
+                <div class="action-buttons">
+                    <button id="encryptFileBtn" class="btn-primary">🔒 Cifrar Archivo</button>
+                    <button id="decryptFileBtn" class="btn-secondary">🔓 Descifrar Archivo</button>
+                </div>
+                <div id="fileResult" class="result-box hidden"></div>
+            </div>
+        </section>
+
+        <!-- ==================== PANEL HERRAMIENTAS ==================== -->
+        <section id="panel-tools" class="panel" role="tabpanel">
+            <div class="tools-grid">
+                <!-- Análisis Criptográfico -->
+                <div class="card">
+                    <h3 style="margin-bottom:16px;color:var(--accent);">📊 Análisis Criptográfico</h3>
+                    <textarea id="analysisInput" placeholder="Pega texto para analizar..." rows="3" aria-label="Texto a analizar"></textarea>
+                    <button id="analyzeBtn" class="btn-primary" style="width:100%;margin-top:12px;">🔬 Analizar</button>
+                    <div id="analysisResult" class="result-box" style="margin-top:16px;"></div>
+                </div>
+
+                <!-- Blockchain / Merkle -->
+                <div class="card">
+                    <h3 style="margin-bottom:16px;color:var(--accent);">📜 Sello Blockchain (Merkle)</h3>
+                    <div class="drop-zone" id="merkleDropZone" style="padding:24px;">
+                        <p>📂 Arrastra archivos para sellar</p>
+                        <input type="file" id="merkleInput" multiple hidden>
+                    </div>
+                    <div id="merkleFileList" style="margin:12px 0;font-size:0.8rem;"></div>
+                    <button id="createMerkleBtn" class="btn-primary" style="width:100%;">🌳 Crear Raíz Merkle</button>
+                    <div id="merkleResult" class="result-box" style="margin-top:16px;"></div>
+                    <hr style="margin:20px 0;border-color:var(--border);">
+                    <label>Verificar integridad</label>
+                    <input type="file" id="verifyFileInput" style="margin:8px 0;" aria-label="Archivo a verificar">
+                    <input type="text" id="originalMerkleRoot" placeholder="Raíz Merkle original" style="margin:8px 0;" aria-label="Raíz Merkle original">
+                    <button id="verifyMerkleBtn" class="btn-secondary" style="width:100%;">✅ Verificar Integridad</button>
+                </div>
+
+                <!-- Mensajes con Expiración -->
+                <div class="card">
+                    <h3 style="margin-bottom:16px;color:var(--accent);">⏱️ Mensaje con Expiración</h3>
+                    <textarea id="expiryMessage" placeholder="Mensaje que caducará..." rows="3" aria-label="Mensaje con expiración"></textarea>
+                    <label style="margin-top:12px;">Fecha de expiración</label>
+                    <input type="datetime-local" id="expiryDate" aria-label="Fecha de expiración">
+                    <label style="margin-top:12px;">Contraseña (opcional)</label>
+                    <input type="password" id="expiryPassword" placeholder="Clave adicional" aria-label="Contraseña opcional">
+                    <button id="createExpiryBtn" class="btn-primary" style="width:100%;margin-top:16px;">🔒 Crear Mensaje</button>
+                    <div id="expiryCreated" class="result-box" style="margin-top:16px;"></div>
+                    <hr style="margin:20px 0;border-color:var(--border);">
+                    <textarea id="expiryCiphertext" placeholder="Pega mensaje cifrado..." rows="2" aria-label="Mensaje cifrado con expiración"></textarea>
+                    <button id="decryptExpiryBtn" class="btn-secondary" style="width:100%;margin-top:8px;">🔓 Descifrar</button>
+                    <div id="expiryDecrypted" class="result-box" style="margin-top:16px;"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Toast para notificaciones -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <script>
+        // ========== PRIVACRYPT · VERSIÓN GITHUB PAGES ==========
+        // 100% Cliente · Sin dependencias externas · Web Crypto API
+        (function(){
+            "use strict";
+            
+            // ========== UTILIDADES ==========
+            function ab2str(buf) { return String.fromCharCode.apply(null, new Uint8Array(buf)); }
+            function arrayBufferToBase64(buffer) { return btoa(String.fromCharCode(...new Uint8Array(buffer))); }
+            function base64ToArrayBuffer(base64) { 
+                try {
+                    return Uint8Array.from(atob(base64), c => c.charCodeAt(0)).buffer;
+                } catch(e) {
+                    throw new Error('Formato Base64 inválido');
+                }
+            }
+            
+            // ========== MOTOR CRYPTO ==========
+            const CryptoEngine = {
+                words: [],
+                history: [],
+                
+                updateWords(text) {
+                    if (!text?.trim()) { this.words = []; }
+                    else {
+                        const clean = text.toLowerCase().replace(/[.,;:!¡¿?()"'-]/g, ' ');
+                        this.words = clean.split(/\s+/).filter(w => w.length > 0);
+                    }
+                    const wc = document.getElementById('wordCount');
+                    if (wc) wc.textContent = this.words.length;
+                },
+                
+                async aesEncrypt(plaintext, password) {
+                    if (!password) throw new Error('Contraseña requerida');
+                    const enc = new TextEncoder();
+                    const salt = crypto.getRandomValues(new Uint8Array(16));
+                    const iv = crypto.getRandomValues(new Uint8Array(12));
+                    const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+                    const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: 250000, hash: 'SHA-256' }, keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt']);
+                    const ciphertext = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(plaintext));
+                    const combined = new Uint8Array(salt.length + iv.length + ciphertext.byteLength);
+                    combined.set(salt, 0);
+                    combined.set(iv, salt.length);
+                    combined.set(new Uint8Array(ciphertext), salt.length + iv.length);
+                    return arrayBufferToBase64(combined);
+                },
+                
+                async aesDecrypt(ciphertextB64, password) {
+                    if (!password) throw new Error('Contraseña requerida');
+                    const enc = new TextEncoder();
+                    const dec = new TextDecoder();
+                    const raw = base64ToArrayBuffer(ciphertextB64);
+                    const salt = raw.slice(0, 16);
+                    const iv = raw.slice(16, 28);
+                    const data = raw.slice(28);
+                    const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+                    const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: 250000, hash: 'SHA-256' }, keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+                    const plaintext = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, data);
+                    return dec.decode(plaintext);
+                },
+                
+                vigenere(text, key, decrypt = false) {
+                    if (!text) return "";
+                    let res = "", j = 0;
+                    let cleanKey = (key || "a").toLowerCase().replace(/[^a-z]/g, "") || "a";
+                    for (let ch of text) {
+                        let lower = ch.toLowerCase();
+                        let code = lower.charCodeAt(0);
+                        if (code >= 97 && code <= 122) {
+                            let shift = cleanKey[j % cleanKey.length].charCodeAt(0) - 97;
+                            if (decrypt) shift = (26 - shift) % 26;
+                            let nc = String.fromCharCode((code - 97 + shift) % 26 + 97);
+                            res += (ch === ch.toUpperCase() && ch !== lower) ? nc.toUpperCase() : nc;
+                            j++;
+                        } else {
+                            res += ch;
+                        }
+                    }
+                    return res;
+                },
+                
+                caesar(text, shift, decrypt = false) {
+                    const d = (decrypt ? -shift : shift) % 26;
+                    return [...text].map(c => {
+                        const code = c.charCodeAt(0);
+                        if (code >= 65 && code <= 90) return String.fromCharCode(((code - 65 + d + 26) % 26) + 65);
+                        if (code >= 97 && code <= 122) return String.fromCharCode(((code - 97 + d + 26) % 26) + 97);
+                        return c;
+                    }).join('');
+                },
+                
+                bookEncrypt(msg, mode, shift) {
+                    if (this.words.length === 0) throw new Error('Sin texto base. Pega contenido en "Texto Base"');
+                    const s = Number(shift) || 0;
+                    return [...msg.toLowerCase()].map(c => {
+                        if (c === ' ') return '␣';
+                        if (mode === 'classic') {
+                            let i = this.words.findIndex(w => w[0] === c);
+                            return i >= 0 ? i + 1 + s : '?';
+                        }
+                        if (mode === 'dict') {
+                            let i = this.words.findIndex(w => w === c);
+                            return i >= 0 ? i + 1 + s : '?';
+                        }
+                        if (mode === 'modern') {
+                            for (let i = 0; i < this.words.length; i++) {
+                                let p = this.words[i].indexOf(c);
+                                if (p >= 0) return `${i + 1 + s}:${p + 1}`;
+                            }
+                            return '?';
+                        }
+                        return '?';
+                    }).join(' ');
+                },
+                
+                bookDecrypt(cipher, mode, shift) {
+                    const s = Number(shift) || 0;
+                    return cipher.split(/\s+/).map(tok => {
+                        if (tok === '␣') return ' ';
+                        if (mode === 'classic' || mode === 'dict') {
+                            let v = parseInt(tok);
+                            if (isNaN(v)) return '?';
+                            let idx = v - 1 - s;
+                            return this.words[idx] ? (mode === 'classic' ? this.words[idx][0] : this.words[idx]) : '?';
+                        }
+                        if (mode === 'modern') {
+                            let parts = tok.split(':');
+                            if (parts.length !== 2) return '?';
+                            let wi = parseInt(parts[0]) - 1 - s;
+                            let ci = parseInt(parts[1]) - 1;
+                            return this.words[wi]?.[ci] || '?';
+                        }
+                        return '?';
+                    }).join('');
+                }
+            };
+
+            // ========== ESTEGANOGRAFÍA ==========
+            const Stegano = {
+                async hide(imageFile, message) {
+                    if (!message) throw new Error('Mensaje vacío');
+                    const img = await this.blobToImage(imageFile);
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const binary = [...new TextEncoder().encode(message)]
+                        .map(b => b.toString(2).padStart(8,'0')).join('') + '00000000';
+                    if (binary.length > imageData.data.length) {
+                        throw new Error(`Mensaje demasiado largo. Máx: ${Math.floor(imageData.data.length/8)-1} caracteres`);
+                    }
+                    for (let i = 0; i < binary.length; i++) {
+                        imageData.data[i] = (imageData.data[i] & 0xFE) | parseInt(binary[i]);
+                    }
+                    ctx.putImageData(imageData, 0, 0);
+                    return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+                },
+                
+                async extract(imageFile) {
+                    const img = await this.blobToImage(imageFile);
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    let binary = '', bytes = [];
+                    for (let i = 0; i < imageData.data.length; i++) {
+                        binary += (imageData.data[i] & 1).toString();
+                        if (binary.length === 8) {
+                            const byte = parseInt(binary, 2);
+                            if (byte === 0) break;
+                            bytes.push(byte);
+                            binary = '';
+                        }
+                    }
+                    if (bytes.length === 0) throw new Error('No se encontró mensaje oculto');
+                    return new TextDecoder().decode(new Uint8Array(bytes));
+                },
+                
+                blobToImage(blob) {
+                    return new Promise((resolve, reject) => {
+                        const img = new Image();
+                        img.onload = () => resolve(img);
+                        img.onerror = () => reject(new Error('No se pudo cargar la imagen'));
+                        img.src = URL.createObjectURL(blob);
+                    });
+                }
+            };
+
+            // ========== UI CONTROLLER ==========
+            const UI = {
+                currentFile: null,
+                steganoFile: null,
+                merkleFiles: [],
+                
+                init() {
+                    this.bindNav();
+                    this.bindCorePanel();
+                    this.bindStegano();
+                    this.bindFiles();
+                    this.bindTools();
+                    this.loadHistory();
+                    this.updateModeSelect();
+                    CryptoEngine.updateWords(document.getElementById('bookText')?.value || '');
+                },
+                
+                bindNav() {
+                    document.querySelectorAll('.nav-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                            btn.classList.add('active');
+                            const panel = document.getElementById(`panel-${btn.dataset.panel}`);
+                            if (panel) panel.classList.add('active');
+                        });
+                    });
+                },
+                
+                bindCorePanel() {
+                    const typeSelect = document.getElementById('typeSelect');
+                    const modeSelect = document.getElementById('modeSelect');
+                    
+                    this.updateModeSelect = () => {
+                        const type = typeSelect.value;
+                        const modes = {
+                            book: [['classic','📘 Primera letra'],['modern','🗺️ Coordenadas X:Y'],['dict','📖 Diccionario']],
+                            classic: [['caesar','🔁 César'],['vigenere','🔑 Vigenère']],
+                            military: [['aes-256','🛡️ AES-256-GCM']]
+                        };
+                        modeSelect.innerHTML = modes[type].map(([v,t]) => `<option value="${v}">${t}</option>`).join('');
+                        this.updateVisibility();
+                    };
+                    
+                    this.updateVisibility = () => {
+                        const type = typeSelect.value, mode = modeSelect.value;
+                        const bookSec = document.getElementById('bookSection');
+                        const shiftGrp = document.getElementById('shiftGroup');
+                        const keyGrp = document.getElementById('keyGroup');
+                        const aesGrp = document.getElementById('aesKeyGroup');
+                        const badge = document.getElementById('securityBadge');
+                        
+                        if (bookSec) bookSec.style.display = type === 'book' ? 'block' : 'none';
+                        if (shiftGrp) shiftGrp.style.display = (type === 'classic' && mode === 'caesar') || type === 'book' ? 'block' : 'none';
+                        if (keyGrp) keyGrp.style.display = mode === 'vigenere' ? 'block' : 'none';
+                        if (aesGrp) aesGrp.style.display = mode === 'aes-256' ? 'block' : 'none';
+                        
+                        if (badge) {
+                            if (mode === 'aes-256') badge.textContent = '🔒 Alta seguridad';
+                            else if (mode === 'vigenere') badge.textContent = '🟡 Seguridad media';
+                            else if (type === 'book') badge.textContent = '📖 Seguridad por oscuridad';
+                            else badge.textContent = '⚠️ Baja seguridad';
+                        }
+                    };
+                    
+                    typeSelect.addEventListener('change', () => this.updateModeSelect());
+                    modeSelect.addEventListener('change', () => this.updateVisibility());
+                    
+                    const bookText = document.getElementById('bookText');
+                    if (bookText) {
+                        bookText.addEventListener('input', e => CryptoEngine.updateWords(e.target.value));
+                    }
+                    
+                    document.getElementById('encryptBtn')?.addEventListener('click', async () => {
+                        const msg = document.getElementById('cipherInput')?.value;
+                        if (!msg) return this.toast('⚠️ Escribe un mensaje');
+                        try {
+                            const type = typeSelect.value, mode = modeSelect.value;
+                            const shift = parseInt(document.getElementById('shiftInput')?.value) || 0;
+                            let result;
+                            
+                            if (type === 'book') {
+                                result = CryptoEngine.bookEncrypt(msg, mode, shift);
+                            } else if (mode === 'aes-256') {
+                                const pass = document.getElementById('aesKeyInput')?.value || prompt('Contraseña:') || 'default';
+                                result = await CryptoEngine.aesEncrypt(msg, pass);
+                            } else if (mode === 'vigenere') {
+                                result = CryptoEngine.vigenere(msg, document.getElementById('keyInput')?.value || 'A');
+                            } else if (mode === 'caesar') {
+                                result = CryptoEngine.caesar(msg, shift);
+                            } else {
+                                result = btoa(unescape(encodeURIComponent(msg)));
+                            }
+                            
+                            const out = document.getElementById('cipherOutput');
+                            if (out) out.value = result;
+                            this.addHistory('🔒 Cifrado', msg, result);
+                        } catch(e) {
+                            this.toast('❌ Error: ' + e.message);
+                        }
+                    });
+                    
+                    document.getElementById('decryptBtn')?.addEventListener('click', async () => {
+                        const cipher = document.getElementById('cipherInput')?.value;
+                        if (!cipher) return this.toast('⚠️ Pega texto cifrado');
+                        try {
+                            const type = typeSelect.value, mode = modeSelect.value;
+                            const shift = parseInt(document.getElementById('shiftInput')?.value) || 0;
+                            let result;
+                            
+                            if (type === 'book') {
+                                result = CryptoEngine.bookDecrypt(cipher, mode, shift);
+                            } else if (mode === 'aes-256') {
+                                const pass = document.getElementById('aesKeyInput')?.value || prompt('Contraseña:') || 'default';
+                                result = await CryptoEngine.aesDecrypt(cipher, pass);
+                            } else if (mode === 'vigenere') {
+                                result = CryptoEngine.vigenere(cipher, document.getElementById('keyInput')?.value || 'A', true);
+                            } else if (mode === 'caesar') {
+                                result = CryptoEngine.caesar(cipher, shift, true);
+                            } else {
+                                result = decodeURIComponent(escape(atob(cipher)));
+                            }
+                            
+                            const out = document.getElementById('cipherOutput');
+                            if (out) out.value = result;
+                            this.addHistory('🔓 Descifrado', cipher, result);
+                        } catch(e) {
+                            this.toast('❌ Error: Datos incorrectos o contraseña inválida');
+                        }
+                    });
+                    
+                    document.getElementById('swapBtn')?.addEventListener('click', () => {
+                        const inp = document.getElementById('cipherInput');
+                        const out = document.getElementById('cipherOutput');
+                        if (inp && out) [inp.value, out.value] = [out.value, inp.value];
+                    });
+                    
+                    document.getElementById('copyOutputBtn')?.addEventListener('click', () => {
+                        const out = document.getElementById('cipherOutput');
+                        if (out) {
+                            out.select();
+                            navigator.clipboard?.writeText(out.value).then(() => this.toast('✅ Copiado'));
+                        }
+                    });
+                    
+                    document.getElementById('clearHistoryBtn')?.addEventListener('click', () => {
+                        CryptoEngine.history = [];
+                        localStorage.removeItem('privacrypt_history');
+                        this.renderHistory();
+                    });
+                },
+                
+                bindStegano() {
+                    const drop = document.getElementById('steganoDropZone');
+                    const input = document.getElementById('steganoFileInput');
+                    
+                    if (drop && input) {
+                        drop.addEventListener('click', () => input.click());
+                        drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('dragover'); });
+                        drop.addEventListener('dragleave', () => drop.classList.remove('dragover'));
+                        drop.addEventListener('drop', e => {
+                            e.preventDefault();
+                            drop.classList.remove('dragover');
+                            this.handleSteganoFile(e.dataTransfer.files[0]);
+                        });
+                        input.addEventListener('change', e => this.handleSteganoFile(e.target.files[0]));
+                    }
+                    
+                    this.handleSteganoFile = async (file) => {
+                        if (!file) return;
+                        this.steganoFile = file;
+                        const info = document.getElementById('steganoFileInfo');
+                        if (info) info.textContent = `${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+                        
+                        if (file.type.includes('image')) {
+                            try {
+                                const img = await Stegano.blobToImage(file);
+                                const capacity = Math.floor((img.width * img.height * 4) / 8) - 1;
+                                const capInfo = document.getElementById('capacityInfo');
+                                if (capInfo) capInfo.textContent = `Capacidad máxima: ~${capacity} caracteres`;
+                            } catch(e) {}
+                        }
+                    };
+                    
+                    document.getElementById('hideStegBtn')?.addEventListener('click', async () => {
+                        if (!this.steganoFile) return this.toast('⚠️ Selecciona una imagen');
+                        const msg = document.getElementById('steganoMessage')?.value;
+                        if (!msg) return this.toast('⚠️ Escribe un mensaje');
+                        try {
+                            const blob = await Stegano.hide(this.steganoFile, msg);
+                            const a = document.createElement('a');
+                            a.href = URL.createObjectURL(blob);
+                            a.download = 'hidden_' + (this.steganoFile.name || 'image.png');
+                            a.click();
+                            this.toast('✅ Mensaje ocultado correctamente');
+                        } catch(e) {
+                            this.toast('❌ Error: ' + e.message);
+                        }
+                    });
+                    
+                    document.getElementById('extractStegBtn')?.addEventListener('click', async () => {
+                        if (!this.steganoFile) return this.toast('⚠️ Selecciona una imagen');
+                        try {
+                            const msg = await Stegano.extract(this.steganoFile);
+                            const textarea = document.getElementById('steganoMessage');
+                            if (textarea) textarea.value = msg;
+                            this.toast('✅ Mensaje extraído');
+                        } catch(e) {
+                            this.toast('❌ No se encontró mensaje oculto');
+                        }
+                    });
+                },
+                
+                bindFiles() {
+                    const drop = document.getElementById('fileDropZone');
+                    const input = document.getElementById('fileInput');
+                    
+                    if (drop && input) {
+                        drop.addEventListener('click', () => input.click());
+                        drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('dragover'); });
+                        drop.addEventListener('dragleave', () => drop.classList.remove('dragover'));
+                        drop.addEventListener('drop', e => {
+                            e.preventDefault();
+                            drop.classList.remove('dragover');
+                            this.currentFile = e.dataTransfer.files[0];
+                            const info = document.getElementById('fileInfo');
+                            if (info) info.textContent = this.currentFile?.name || '';
+                        });
+                        input.addEventListener('change', e => {
+                            this.currentFile = e.target.files[0];
+                            const info = document.getElementById('fileInfo');
+                            if (info) info.textContent = this.currentFile?.name || '';
+                        });
+                    }
+                    
+                    document.getElementById('encryptFileBtn')?.addEventListener('click', async () => {
+                        if (!this.currentFile) return this.toast('⚠️ Selecciona un archivo');
+                        const pass = document.getElementById('filePassword')?.value;
+                        if (!pass) return this.toast('⚠️ Contraseña requerida');
+                        try {
+                            const data = await this.currentFile.arrayBuffer();
+                            const enc = await CryptoEngine.aesEncrypt(ab2str(data), pass);
+                            const blob = new Blob([enc], {type: 'application/octet-stream'});
+                            const a = document.createElement('a');
+                            a.href = URL.createObjectURL(blob);
+                            a.download = this.currentFile.name + '.encrypted';
+                            a.click();
+                            this.toast('✅ Archivo cifrado');
+                        } catch(e) {
+                            this.toast('❌ Error al cifrar');
+                        }
+                    });
+                    
+                    document.getElementById('decryptFileBtn')?.addEventListener('click', async () => {
+                        if (!this.currentFile) return this.toast('⚠️ Selecciona un archivo .encrypted');
+                        const pass = document.getElementById('filePassword')?.value;
+                        if (!pass) return this.toast('⚠️ Contraseña requerida');
+                        try {
+                            const text = await this.currentFile.text();
+                            const dec = await CryptoEngine.aesDecrypt(text, pass);
+                            const blob = new Blob([dec], {type: 'application/octet-stream'});
+                            const a = document.createElement('a');
+                            a.href = URL.createObjectURL(blob);
+                            a.download = this.currentFile.name.replace(/\.encrypted$/, '');
+                            a.click();
+                            this.toast('✅ Archivo descifrado');
+                        } catch(e) {
+                            this.toast('❌ Contraseña incorrecta o archivo corrupto');
+                        }
+                    });
+                },
+                
+                bindTools() {
+                    // Análisis
+                    document.getElementById('analyzeBtn')?.addEventListener('click', () => {
+                        const text = document.getElementById('analysisInput')?.value;
+                        if (!text) return this.toast('⚠️ Pega texto para analizar');
+                        const clean = text.toUpperCase().replace(/[^A-Z]/g, '');
+                        if (clean.length === 0) return this.toast('⚠️ No hay letras para analizar');
+                        
+                        const freq = {};
+                        for (let c of clean) freq[c] = (freq[c] || 0) + 1;
+                        
+                        let ic = 0;
+                        for (let c in freq) ic += freq[c] * (freq[c] - 1);
+                        ic = ic / (clean.length * (clean.length - 1)) || 0;
+                        
+                        let entropy = 0;
+                        for (let c in freq) {
+                            let p = freq[c] / clean.length;
+                            entropy -= p * Math.log2(p);
+                        }
+                        
+                        const result = document.getElementById('analysisResult');
+                        if (result) {
+                            result.innerHTML = `
+                                <strong>📈 Índice de Coincidencia:</strong> ${ic.toFixed(4)}<br>
+                                <small>Español ~0.077 · Aleatorio ~0.038</small><br>
+                                <strong>🎲 Entropía de Shannon:</strong> ${entropy.toFixed(4)} bits<br>
+                                <strong>📏 Longitud:</strong> ${clean.length} caracteres
+                            `;
+                        }
+                    });
+                    
+                    // Merkle
+                    const merkleDrop = document.getElementById('merkleDropZone');
+                    const merkleInput = document.getElementById('merkleInput');
+                    if (merkleDrop && merkleInput) {
+                        merkleDrop.addEventListener('click', () => merkleInput.click());
+                        merkleDrop.addEventListener('dragover', e => { e.preventDefault(); merkleDrop.classList.add('dragover'); });
+                        merkleDrop.addEventListener('dragleave', () => merkleDrop.classList.remove('dragover'));
+                        merkleDrop.addEventListener('drop', e => {
+                            e.preventDefault();
+                            merkleDrop.classList.remove('dragover');
+                            this.merkleFiles = Array.from(e.dataTransfer.files);
+                            this.updateMerkleList();
+                        });
+                        merkleInput.addEventListener('change', e => {
+                            this.merkleFiles = Array.from(e.target.files);
+                            this.updateMerkleList();
+                        });
+                    }
+                    
+                    this.updateMerkleList = () => {
+                        const list = document.getElementById('merkleFileList');
+                        if (list) {
+                            list.innerHTML = this.merkleFiles.map(f => `📄 ${f.name}`).join('<br>');
+                        }
+                    };
+                    
+                    document.getElementById('createMerkleBtn')?.addEventListener('click', async () => {
+                        if (!this.merkleFiles.length) return this.toast('⚠️ Selecciona archivos');
+                        try {
+                            const hashes = await Promise.all(this.merkleFiles.map(async f => {
+                                const buf = await f.arrayBuffer();
+                                const hash = await crypto.subtle.digest('SHA-256', buf);
+                                return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+                            }));
+                            
+                            let level = hashes;
+                            while (level.length > 1) {
+                                const next = [];
+                                for (let i = 0; i < level.length; i += 2) {
+                                    const combined = level[i] + (level[i+1] || level[i]);
+                                    const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(combined));
+                                    next.push(Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join(''));
+                                }
+                                level = next;
+                            }
+                            
+                            const result = document.getElementById('merkleResult');
+                            if (result) {
+                                result.innerHTML = `<strong>🌳 Raíz Merkle:</strong><br><code style="word-break:break-all;">${level[0]}</code><br><small>⏱️ ${new Date().toLocaleString()}</small>`;
+                            }
+                            this.toast('✅ Raíz Merkle generada');
+                        } catch(e) {
+                            this.toast('❌ Error al procesar archivos');
+                        }
+                    });
+                    
+                    document.getElementById('verifyMerkleBtn')?.addEventListener('click', async () => {
+                        const file = document.getElementById('verifyFileInput')?.files[0];
+                        const root = document.getElementById('originalMerkleRoot')?.value;
+                        if (!file || !root) return this.toast('⚠️ Selecciona archivo y pega raíz');
+                        try {
+                            const buf = await file.arrayBuffer();
+                            const hash = await crypto.subtle.digest('SHA-256', buf);
+                            const fileHash = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+                            
+                            if (fileHash === root) {
+                                this.toast('✅ Integridad verificada (coincidencia directa)');
+                            } else {
+                                this.toast('❌ El archivo no coincide con la raíz proporcionada');
+                            }
+                        } catch(e) {
+                            this.toast('❌ Error en verificación');
+                        }
+                    });
+                    
+                    // Expiración
+                    document.getElementById('createExpiryBtn')?.addEventListener('click', async () => {
+                        const msg = document.getElementById('expiryMessage')?.value;
+                        const exp = new Date(document.getElementById('expiryDate')?.value).getTime();
+                        const pass = document.getElementById('expiryPassword')?.value;
+                        
+                        if (!msg || !exp) return this.toast('⚠️ Completa todos los campos');
+                        if (exp < Date.now()) return this.toast('⚠️ La fecha debe ser futura');
+                        
+                        const payload = JSON.stringify({ msg, exp });
+                        let result = pass ? await CryptoEngine.aesEncrypt(payload, pass) : btoa(payload);
+                        
+                        const created = document.getElementById('expiryCreated');
+                        if (created) {
+                            created.innerHTML = `<code style="word-break:break-all;">${result}</code>`;
+                        }
+                        this.toast('⏱️ Mensaje con expiración creado');
+                    });
+                    
+                    document.getElementById('decryptExpiryBtn')?.addEventListener('click', async () => {
+                        const cipher = document.getElementById('expiryCiphertext')?.value;
+                        const pass = document.getElementById('expiryPassword')?.value;
+                        if (!cipher) return this.toast('⚠️ Pega el mensaje cifrado');
+                        
+                        try {
+                            let payload = pass ? await CryptoEngine.aesDecrypt(cipher, pass) : atob(cipher);
+                            const data = JSON.parse(payload);
+                            const decrypted = document.getElementById('expiryDecrypted');
+                            
+                            if (data.exp < Date.now()) {
+                                if (decrypted) decrypted.innerHTML = '⏰ Este mensaje ha EXPIRADO';
+                            } else {
+                                const remaining = Math.round((data.exp - Date.now()) / (1000 * 60 * 60 * 24));
+                                if (decrypted) decrypted.innerHTML = `✅ <strong>Mensaje (válido ${remaining} días):</strong><br>${data.msg}`;
+                            }
+                        } catch(e) {
+                            this.toast('❌ Error al descifrar o datos corruptos');
+                        }
+                    });
+                },
+                
+                addHistory(action, input, output) {
+                    CryptoEngine.history.unshift({
+                        action,
+                        preview: input.slice(0, 25) + (input.length > 25 ? '…' : '') + ' → ' + output.slice(0, 25) + (output.length > 25 ? '…' : ''),
+                        time: new Date().toLocaleTimeString()
+                    });
+                    if (CryptoEngine.history.length > 10) CryptoEngine.history.pop();
+                    localStorage.setItem('privacrypt_history', JSON.stringify(CryptoEngine.history));
+                    this.renderHistory();
+                },
+                
+                renderHistory() {
+                    const cont = document.getElementById('historyList');
+                    if (!cont) return;
+                    cont.innerHTML = CryptoEngine.history.map(h => `
+                        <div class="history-item">
+                            <span style="min-width:70px;">${h.action}</span>
+                            <span style="flex:1;">${h.preview}</span>
+                            <span style="opacity:0.6;">${h.time}</span>
+                        </div>
+                    `).join('');
+                },
+                
+                loadHistory() {
+                    try {
+                        const saved = localStorage.getItem('privacrypt_history');
+                        if (saved) CryptoEngine.history = JSON.parse(saved);
+                        this.renderHistory();
+                    } catch(e) {}
+                },
+                
+                toast(msg) {
+                    const t = document.getElementById('toast');
+                    if (!t) return;
+                    t.textContent = msg;
+                    t.classList.remove('hidden');
+                    setTimeout(() => t.classList.add('hidden'), 3000);
+                }
+            };
+            
+            // Iniciar cuando el DOM esté listo
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => UI.init());
+            } else {
+                UI.init();
+            }
+        })();
+    </script>
+</body>
+</html>
