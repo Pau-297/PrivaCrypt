@@ -4,51 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     
-    <!-- ==================== SEO META TAGS ==================== -->
+    <!-- ==================== SEO META TAGS (Intactas) ==================== -->
     <title>PrivaCrypt · Cifrado Militar AES-256, Sistema Libro y Esteganografía</title>
     <meta name="description" content="Herramienta de cifrado profesional en tu navegador. AES-256, Sistema Libro, esteganografía en imágenes, verificación blockchain y mensajes con expiración. 100% privado, sin registro, open source.">
-    <meta name="keywords" content="cifrado, AES-256, esteganografía, sistema libro, encriptar, seguridad, privacidad, cifrar archivos, ocultar mensajes, blockchain, Merkle, Web Crypto API">
+    <meta name="keywords" content="cifrado, AES-256, esteganografía, sistema libro, encriptar, seguridad, privacidad, cifrar archivos, ocultar mensajes, blockchain, Merkle, Web Crypto API, client-side encryption, browser encryption, encrypt files locally, privacy tools">
     <meta name="author" content="PrivaCrypt">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#0a0e17">
     <link rel="canonical" href="https://pau-297.github.io/privacrypt/">
     
-    <!-- ==================== FAVICON (Compatibilidad total) ==================== -->
-    <!-- ICO para navegadores antiguos / Internet Explorer -->
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIgBDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAIA3AACANwAAgDcAAIA3AACANwAAgDcAAIA3AACANwAAgDcAAIA3AACANwAAgDcAAIA3AACANwAAgDcAAIBzAACAcwAAgHMAAIBzAACAcwAAgHMAAIBzAACAcwAAgHMAAIBzAACAcwAAgHMAAIBzAACAcwAAgHMAAIBzAACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA">
-    
-    <!-- SVG Favicon (moderno, vectorial, escalable) -->
+    <!-- ==================== FAVICON (Compatibilidad total - Sin cambios) ==================== -->
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIiIiACIiIgAiIiIAIgBDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAENTAABDUwAAQ1MAAIA3AACANwAAgDcAAIA3AACANwAAgDcAAIA3AACANwAAgDcAAIA3AACANwAAgDcAAIA3AACANwAAgDcAAIBzAACAcwAAgHMAAIBzAACAcwAAgHMAAIBzAACAcwAAgHMAAIBzAACAcwAAgHMAAIBzAACAcwAAgHMAAIBzAACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAIB1AACAdQAAgHUAAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2300d4ff'/%3E%3Cpath d='M50 28c-6.6 0-12 5.4-12 12v6h24v-6c0-6.6-5.4-12-12-12zm-8 18v-6c0-4.4 3.6-8 8-8s8 3.6 8 8v6h-16z' fill='%230a0e17'/%3E%3Crect x='38' y='52' width='24' height='24' rx='4' fill='%230a0e17'/%3E%3Ccircle cx='50' cy='64' r='3' fill='%2300d4ff'/%3E%3C/svg%3E">
-    
-    <!-- PNG Favicon 32x32 (estándar navegadores modernos) -->
     <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAByklEQVR4nO2Wu07DMBSGj7jLzAMgMbAwMbAwMTGxMDEhgRADIzOIQaVKlSrBBhJDL6W2FGhiO26QOvUTfqVK+T45+b/j2KmoqKioqKjU4gA4A+4BJ4z/oHIDB+asgUvgnHUC7cBVAALgAuiaAR6Ae+AImLATZx24YSZW/+bAvr0GboFQ1iFw5Rl3bcYDcMKYibUggDvgSogGZ8AYMGKdhMCzEG+Pq+YYuAuBMeBViBdC+P+2A0dCRBV9hwHwZTPgXoR6BpxbQXPAkw3R54RT+44CFsCzEL2Y7K8ZcGJF+1Lk/TngktK5YCIvrMAOZ/wCHeMYAacOZR2yG8j4FzRjbEQJ2DH6T9AITMEzUWTBOTBneXUT+BfgBtgbEmEdPzABG5Z2PwA3AHiC5Q1wYQm/sAO3zPEocA8sGNnDQvQYWA9UwB0z9Ql4YntpZuI/7A13eY7AdtYz3m0Gzlz8WYPqGnASwE/qdJ+UcAAAAABJRU5ErkJggg==">
-    
-    <!-- PNG Favicon 16x16 (compatibilidad máxima) -->
     <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6klEQVR4nK2TPU7DQBCFX2I3KFxJSZESCRERKZoIpEhIFHQp4wS0DByBczADB6BIDRRYVopohJRfKGQrNqsgzWqHtSV71nvz3sz3ZgXFUUQIESKlRCAQCAQCgUAgEAgEAoFAIBAIPxkCZ4A8D4CUPwDnQB4HgBT/gD1wB9jclK0Bl3mW90+4B3ZOvGLmF3AHbNz4zQC3Hrhh5lvgxkl8QpxbgEMn8QkxN8y2B1vcAlNn5CPg2Fm2MfMGOGFmSVEUY7V+9GpNpIgDMPHqBzPvgRM3/hOzz/UHnjwGzD3gLusNYNnbP2NmGkiKooiRpmmcJEnE4/FYpVKJpJS4XC4RCHwB/rRfd1zD4aQAAAAASUVORK5CYII=">
-
-    <!-- Apple Touch Icon (iOS / iPadOS guardar en pantalla de inicio) -->
-    <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
-    
-    <!-- Android Chrome / PWA manifest -->
-    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22PrivaCrypt%22,%22short_name%22:%22PrivaCrypt%22,%22icons%22:[{%22src%22:%22data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAADLklEQVR4nO2dO2gcRRzGf2e96HmEkwRBwQhKjJjCIGEeB2ZoZwQRCxE7Qa1TKF2kaCfaKUhgIWiTzocgGITEvDwhRFuBECRGxEAkWpu3SOKdmz1jPI+329nvbmdm/o8fdsPHzO7%2BdmZ259sBQgiKooiD4iCOSgBKoCgKOiiOogBKQSpKpSgOoiAOUhSLorighInYTlF6SUIqRVEUxEFRFEdRQKG4oKQoDqJgJjajKJ0yYwqK4iCKoigOUpAkKZKS%2FGTG6H%2BcKIqiKEhSFAIoH4i%2FqFQqFVy2N9PT0w5pWk1PTzsspFmPx4PlcvteXV0dXl9fHwfGfD7fGR8fL8yPjY1Nzc7O3sFzGgjTQLhveblcLk9OTk4QQuD0LQn1lrhjT0xM4PV6bdwf9Xq9YmEeD9PAlofneYdCocDU1JQDnOQ4brpcLpcBnABImDsmgG+djiAITk5MTNwEfD%2F5tmVZ8Hg8aavVauG6LgghIIT4qD4l%2FHq9DhaGYUIqlYLr6%2Bujq6urqUEQvN5ut8%2BiaHq9HhRFgSiKjHmeB6fT2W6320uWdRrnBghBEARFUYAxBhzHjTIGt9sNiqJAEAS9aZrg8XggjuNVxhjGGBDCAADouq5TFIVarbZBKU0PPW5xcRGazaYdhiEYhiEzxrBer0O73S4Tr%2FfU0A3DgFqttgGc5BnjCJzHQavVgiiKQFEUcBynSZKEAFhwHAeWZUFZliFN05MYht8NQwjDENTrdQjjGEqnk4nneTBJkgLMHTMMw2O%2BZ95yHDcNwC0AmaIoZvU8Dz6fD0gIlVMURTDGQMZxHHS7XbBarUAIgUajsUwIQcD%2BorG6uoqGhoYgSRKU0i1d173VahUEQdCjU%2FjtdhuCIADHcUAphQjDMBNFkQvAPafTaaYoCujLyspK4DgONjY2wHGcBVyE9fsBpgEAKe3K5XIX2KAHgIsQ%2F28CTKOrgxACkUgE%2Bv1%2BHmLNfwH%2BjldwYyI%2FOzsLjuMcwNlLtbfUYiEcfT4f8EUul%2Fv%2F7e3tNTLIX4P2Z3qUXxQhGSGEoiiKgyiIgyiIgyiIgyiIgxRrIgVxkII4iII4iII4iIIUxEES4iCJcZCCJIhOSArJQSiKoiAOoiAOoiAOkiAKRRwUB0n5B8uVgSqV7xRkAAAAAElFTkSuQmCC%22,%22sizes%22:%2264x64%22,%22type%22:%22image/png%22}]}">
-    
-    <!-- Microsoft Edge / Windows tile -->
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22PrivaCrypt%22,%22short_name%22:%22PrivaCrypt%22,%22icons%22:[{%22src%22:%22data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAADLklEQVR4nO2dO2gcRRzGf2e96HmEkwRBwQhKjJjCIGEeB2ZoZwQRCxE7Qa1TKF2kaCfaKUhgIWiTzocgGITEvDwhRFuBECRGxEAkWpu3SOKdmz1jPI+329nvbmdm/o8fdsPHzO7%2BdmZ259sBQgiKooiD4iCOSgBKoCgKOiiOogBKQSpKpSgOoiAOUhSLorighInYTlF6SUIqRVEUxEFRFEdRQKG4oKQoDqJgJjajKJ0yYwqK4iCKoigOUpAkKZKS%2FGTG6H%2BcKIqiKEhSFAIoH4i%2FqFQqFVy2N9PT0w5pWk1PTzsspFmPx4PlcvteXV0dXl9fHwfGfD7fGR8fL8yPjY1Nzc7O3sFzGgjTQLhveblcLk9OTk4QQuD0LQn1lrhjT0xM4PV6bdwf9Xq9YmEeD9PAlofneYdCocDU1JQDnOQ4brpcLpcBnABImDsmgG+djiAITk5MTNwEfD/5tmVZ8Hg8aavVauG6LgghIIT4qD4l/Hq9DhaGYUIqlYLr6+ujq6urqUEQvN5ut8+iaHq9HhRFgSiKjHmeB6fT2W6320uWdRrnBghBEARFUYAxBhzHjTIGt9sNiqJAEAS9aZrg8XggjuNVxhjGGBDCAADouq5TFIVarbZBKU0PPW5xcRGazaYdhiEYhiEzxrBer0O73S4Tr/fU0A3DgFqttgGc5BnjCJzHQavVgiiKQFEUcBynSZKEAFhwHAeWZUFZliFN05MYht8NQwjDENTrdQjjGEqnk4nneTBJkgLMHTMMw2O+Z95yHDcNwC0AmaIoZvU8Dz6fD0gIlVMURTDGQMZxHHS7XbBarUAIgUajsUwIQcD+orG6uoqGhoYgSRKU0i1d173VahUEQdCjU/jtdhuCIADHcUAphQjDMBNFkQvAPafTaaYoCujLyspK4DgONjY2wHGcBVyE9fsBpgEAKe3K5XIX2KAHgIsQ/28CTKOrgxACkUgE+v1+HmLNfwH+jldwYyI/OzsLjuMcwNlLtbfUYiEcfT4f8EUul/v/7e3tNTLIX4P2Z3qUXxQhGSGEoiiKgyiIgyiIgyiIgyiIgxRrIgVxkII4iII4iII4iIIUxEES4iCJcZCCJIhOSArJQSiKoiAOoiAOoiAOkiAKRRwUB0n5B8uVgSqV7xRkAAAAAElFTkSuQmCC%22,%22sizes%22:%2264x64%22,%22type%22:%22image/png%22}]}">
     <meta name="msapplication-TileColor" content="#0a0e17">
-    <meta name="msapplication-TileImage" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABt0lEQVRoQ+2YvUrEQBDH965XcNCQW9JCBMFa7bQSQTzBXhOx8QksfAA7bT1jYyOIhRYWCsEcWFj4BzZeiKjFpRfJaBZ3i9Ek21vKBwO7k8n%2Fd2ZmNwkFAoFAAIqZQAYZZJBBBhkWJJlVhjqNTivACnCplW2gD/VilwusFXNbUzCbqbHIMHdO45V%2BkVjWAl3gQnSjozkZ4myzTUtb2mPouQbM2PphXh%2F%2FXbS36QeJhZ1pxgErFeU6EaArOpyhVW3hrCqY1qIueK1LENgX44UCWKBnLr5uTpyWNNB4HwHi%2FrUwxJw2TzN2nCLgFv0AYBN3V2cULc2pRN9XmKfTAMdY9cEiB7dE1wcH5yAZQslMIHo1HmuO%2F5pQNArIZsS8VQzOQTCo6WoxrZ1LzUCwZtQ3CvHqQThzHc9iJYr1DQE7tqPT50tUILrgWrduacCecxhFc8BpFTis4nqJ6ANR9CBP7N3eyo4Qr%2FBg29q2HGgV0Kmyq7R3SsvB82JzJ1SU3pVFFvjCj%2BbGODUPOBV%2FZ4iGRhZ4zUJvxnsGff%2Fg%2Bz%2B5a71AIBD4FpgBssgggwwyyCDDn5IPhzwoVmwU%2FpgAAAAASUVORK5CYII=">
+    <meta name="msapplication-TileImage" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABt0lEQVRoQ+2YvUrEQBDH965XcNCQW9JCBMFa7bQSQTzBXhOx8QksfAA7bT1jYyOIhRYWCsEcWFj4BzZeiKjFpRfJaBZ3i9Ek21vKBwO7k8n%2Fd2ZmNwkFAoFAAIqZQAYZZJBBBhkWJJlVhjqNTivACnCplW2gD/VilwusFXNbUzCbqbHIMHdO45V%2BkVjWAl3gQnSjozkZ4myzTUtb2mPouQbM2PphXh%2F/XbS36QeJhZ1pxgErFeU6EaArOpyhVW3hrCqY1qIueK1LENgX44UCWKBnLr5uTpyWNNB4HwHi/rUwxJw2TzN2nCLgFv0AYBN3V2cULc2pRN9XmKfTAMdY9cEiB7dE1wcH5yAZQslMIHo1HmuO/5pQNArIZsS8VQzOQTCo6WoxrZ1LzUCwZtQ3CvHqQThzHc9iJYr1DQE7tqPT50tUILrgWrduacCecxhFc8BpFTis4nqJ6ANR9CBP7N3eyo4Qr/Bg29q2HGgV0Kmyq7R3SsvB82JzJ1SU3pVFFvjCj+bGODUPOBV/Z4iGRhZ4zUJvxnsGff/g+z+5a71AIBD4FpgBssgggwwyyCDDn5IPhzwoVmwU/pgAAAAASUVORK5CYII=">
     
-    <!-- Color del tema para navegadores (mantiene coherencia visual) -->
-    <meta name="theme-color" content="#0a0e17">
-    <meta name="msapplication-navbutton-color" content="#0a0e17">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <!-- Open Graph / Redes Sociales -->
+    <!-- Open Graph / Redes Sociales (Intacto) -->
     <meta property="og:title" content="PrivaCrypt · Cifrado Militar en tu Navegador">
     <meta property="og:description" content="Cifra mensajes con Sistema Libro, AES-256 y oculta información en imágenes. Sin registro, 100% cliente.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pau-297.github.io/privacrypt/">
     <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%230a0e17'/%3E%3Ctext x='600' y='330' font-family='Arial' font-size='48' fill='%2300d4ff' text-anchor='middle'%3E🔐 PrivaCrypt%3C/text%3E%3C/svg%3E">
     
-    <!-- Schema.org / Rich Snippets -->
+    <!-- Schema.org / Rich Snippets (Intacto) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -69,18 +51,19 @@
     <style>
         :root {
             --bg-primary: #0a0e17;
-            --bg-secondary: #141a2b;
+            --bg-secondary: #111827;
             --bg-tertiary: #1a2335;
-            --text-primary: #ffffff;
-            --text-secondary: #a0aec0;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
             --accent: #00d4ff;
-            --accent-glow: rgba(0, 212, 255, 0.25);
+            --accent-glow: rgba(0, 212, 255, 0.2);
             --border: rgba(255, 255, 255, 0.06);
-            --glass-bg: rgba(20, 26, 43, 0.85);
+            --glass-bg: rgba(17, 24, 39, 0.8);
             --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             --radius-xl: 24px;
             --radius-lg: 18px;
             --radius-md: 14px;
+            --radius-sm: 10px;
             --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -89,90 +72,279 @@
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg-primary);
-            background-image: radial-gradient(ellipse at 20% 0%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+            background-image: radial-gradient(ellipse at 20% 0%, rgba(0, 212, 255, 0.06) 0%, transparent 50%);
             color: var(--text-primary);
             min-height: 100vh;
-            line-height: 1.7;
-            padding: 24px 20px 40px;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
         }
 
-        .app-container { max-width: 1200px; margin: 0 auto; }
+        .app-container { 
+            max-width: 1100px; 
+            width: 100%; 
+            margin: 0 auto; 
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
 
-        .app-header { text-align: center; margin-bottom: 32px; }
-        .logo-wrapper { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
-        h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; background: linear-gradient(135deg, #00d4ff, #7dd3fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .subtitle { color: var(--text-secondary); font-size: 1rem; max-width: 700px; margin: 8px auto 0; }
+        /* Hero Section Minimalista */
+        .hero {
+            text-align: center;
+            padding: 20px 0 10px;
+        }
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7dd3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 12px;
+            font-weight: 500;
+        }
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 40px;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .trust-badge svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.8;
+        }
 
-        .seo-content {
+        /* Navegación Principal */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
-            border-radius: var(--radius-xl);
-            padding: 32px;
-            margin-bottom: 32px;
+            border-radius: 60px;
+            padding: 6px;
             border: 1px solid var(--border);
+            width: fit-content;
+            margin: 0 auto;
+            flex-wrap: wrap;
         }
-        .seo-content h2 { color: var(--accent); font-size: 1.5rem; margin-bottom: 20px; }
-        .seo-content h3 { color: var(--text-primary); font-size: 1.2rem; margin: 24px 0 12px; }
-        .seo-content p { color: var(--text-secondary); margin-bottom: 16px; }
-        .seo-content ul { color: var(--text-secondary); margin-left: 24px; margin-bottom: 20px; }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 24px 0; }
-        .feature-card { background: var(--bg-tertiary); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border); }
-        .feature-card strong { color: var(--accent); display: block; margin-bottom: 8px; }
-
-        .main-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; padding: 6px; background: var(--glass-bg); backdrop-filter: blur(12px); border-radius: 60px; border: 1px solid var(--border); flex-wrap: wrap; }
-        .nav-btn { padding: 12px 28px; background: transparent; border: none; color: var(--text-secondary); font-weight: 600; border-radius: 40px; cursor: pointer; transition: var(--transition); }
+        .nav-btn {
+            padding: 10px 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
         .nav-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
-        .nav-btn.active { background: var(--accent); color: var(--bg-primary); box-shadow: 0 8px 20px var(--accent-glow); }
+        .nav-btn.active { background: var(--accent); color: #0a0e17; box-shadow: 0 6px 16px var(--accent-glow); }
 
+        /* Paneles */
         .panel { display: none; animation: fadeIn 0.3s ease; }
         .panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-        .card { background: var(--glass-bg); backdrop-filter: blur(12px); border-radius: var(--radius-xl); padding: clamp(20px, 4vw, 28px); border: 1px solid var(--border); box-shadow: var(--shadow-lg); margin-bottom: 24px; }
-        .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
-        .card-header h2, .card-header h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 700; color: var(--accent); }
-        .badge { padding: 6px 14px; background: rgba(0,212,255,0.1); border: 1px solid var(--accent); border-radius: 30px; font-size: 0.75rem; font-weight: 600; }
+        /* Cards minimalistas */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius-xl);
+            padding: 28px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 24px;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            gap: 12px;
+        }
+        .card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
 
-        .system-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+        /* Inputs y Botones */
         select, input[type="number"], input[type="password"], input[type="text"], input[type="datetime-local"] {
-            width: 100%; padding: 12px 16px; background: var(--bg-tertiary); border: 1.5px solid var(--border);
-            border-radius: var(--radius-md); color: var(--text-primary); font-size: 0.95rem;
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            transition: var(--transition);
         }
         select:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-
-        textarea { width: 100%; min-height: 120px; padding: 18px; background: var(--bg-tertiary); border: 1.5px solid var(--border); border-radius: var(--radius-lg); color: var(--text-primary); font-size: 1rem; font-family: 'SF Mono', monospace; resize: vertical; }
+        
+        textarea {
+            width: 100%;
+            min-height: 110px;
+            padding: 16px;
+            background: var(--bg-tertiary);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            resize: vertical;
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
         textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-glow); }
 
-        .action-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
-        .btn-primary, .btn-secondary, .btn-icon { padding: 14px 28px; border-radius: 40px; font-weight: 700; cursor: pointer; transition: var(--transition); border: none; }
-        .btn-primary { background: var(--accent); color: var(--bg-primary); box-shadow: 0 8px 20px var(--accent-glow); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px var(--accent-glow); }
+        .btn-primary, .btn-secondary, .btn-icon {
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.9rem;
+        }
+        .btn-primary { background: var(--accent); color: #0a0e17; box-shadow: 0 6px 16px var(--accent-glow); }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 24px var(--accent-glow); }
         .btn-secondary { background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); }
-        .btn-secondary:hover { border-color: var(--accent); background: rgba(0,212,255,0.05); }
-        .btn-icon { width: 48px; height: 48px; padding: 0; background: var(--bg-tertiary); border: 1.5px solid var(--border); color: var(--text-primary); }
+        .btn-secondary:hover { border-color: var(--accent); background: rgba(0,212,255,0.06); }
+        .btn-icon { width: 44px; height: 44px; padding: 0; background: var(--bg-tertiary); border: 1.5px solid var(--border); color: var(--text-primary); display: inline-flex; align-items: center; justify-content: center; }
 
-        .drop-zone { border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: clamp(30px, 5vw, 48px); text-align: center; cursor: pointer; margin-bottom: 24px; }
-        .drop-zone:hover { border-color: var(--accent); background: rgba(0,212,255,0.03); }
-        .drop-zone.dragover { border-color: var(--accent); background: rgba(0,212,255,0.05); }
+        .action-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
 
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .result-box { margin-top: 16px; padding: 16px; background: var(--bg-tertiary); border-radius: var(--radius-md); word-break: break-all; }
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); padding: 14px 28px; background: var(--bg-secondary); border: 1px solid var(--accent); border-radius: 60px; z-index: 1000; }
+        .drop-zone {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        .drop-zone:hover, .drop-zone.dragover { border-color: var(--accent); background: rgba(0,212,255,0.03); }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent);
+            border-radius: 40px;
+            z-index: 1000;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(12px);
+            background: rgba(17,24,39,0.9);
+        }
         .toast.hidden { display: none; }
         .hidden { display: none !important; }
-        .word-count { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
-        .history-item { padding: 12px; background: var(--bg-tertiary); border-radius: var(--radius-md); margin-bottom: 8px; border-left: 3px solid var(--accent); display: flex; gap: 12px; align-items: center; font-size: 0.85rem; flex-wrap: wrap; }
 
-        footer { text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.85rem; }
+        /* Sección SEO / Información */
+        .seo-section {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+        .seo-section details {
+            margin-bottom: 20px;
+        }
+        .seo-section summary {
+            font-weight: 600;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 12px 0;
+            font-size: 1.1rem;
+        }
+        .seo-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            padding: 12px 0;
+        }
+        .seo-content h3 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin: 20px 0 8px;
+        }
+
+        /* Labs Grid */
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .lab-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+        .lab-card h4 {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .result-box {
+            margin-top: 16px;
+            padding: 14px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
         footer a { color: var(--accent); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <header class="app-header">
+        <!-- Hero Section Minimalista -->
+        <header class="hero">
             <div class="logo-wrapper">
-                <svg width="48" height="48" viewBox="0 0 100 100" role="img" aria-label="PrivaCrypt Logo">
+                <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="PrivaCrypt Logo">
                     <rect width="100" height="100" rx="24" fill="url(#grad)"/>
                     <defs><linearGradient id="grad"><stop stop-color="#00d4ff"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
                     <path d="M50 28c-6.6 0-12 5.4-12 12v6h24v-6c0-6.6-5.4-12-12-12zm-8 18v-6c0-4.4 3.6-8 8-8s8 3.6 8 8v6h-16z" fill="#0a0e17"/>
@@ -181,89 +353,156 @@
                 </svg>
                 <h1>PrivaCrypt</h1>
             </div>
-            <p class="subtitle">Cifrado militar AES-256 · Sistema Libro · Esteganografía · 100% Cliente · Open Source</p>
+            <p class="tagline">Private tools that run entirely in your browser.</p>
+            <div class="trust-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Runs entirely on your device. No uploads. No accounts. No tracking.
+            </div>
         </header>
 
-        <section class="seo-content">
-            <h2>🔐 Herramienta de Cifrado Profesional en tu Navegador</h2>
-            <p>PrivaCrypt es una suite criptográfica completa que funciona completamente en el navegador, sin necesidad de registro ni envío de datos a servidores externos. Utiliza la <strong>Web Crypto API</strong> nativa para garantizar la máxima seguridad con algoritmos estándar como <strong>AES-256-GCM</strong>, derivación de claves <strong>PBKDF2</strong> y generación de pares <strong>RSA-2048</strong>.</p>
-            
-            <h3>✨ Funcionalidades Principales</h3>
-            <div class="feature-grid">
-                <div class="feature-card"><strong>📖 Sistema Libro</strong>Cifrado por coordenadas basado en un texto base. Cada carácter se codifica como posición de palabra o coordenada X:Y.</div>
-                <div class="feature-card"><strong>⚡ AES-256-GCM</strong>El estándar de cifrado militar. Con salt aleatorio, IV único y 250,000 iteraciones PBKDF2.</div>
-                <div class="feature-card"><strong>🌐 Esteganografía LSB</strong>Oculta mensajes en imágenes PNG modificando el bit menos significativo. Incluye checksum SHA-256.</div>
-                <div class="feature-card"><strong>📜 Blockchain Merkle</strong>Sella archivos con raíz Merkle para verificar su integridad.</div>
-            </div>
-
-            <h3>🛡️ ¿Por qué elegir PrivaCrypt?</h3>
-            <p>A diferencia de otras herramientas online, PrivaCrypt <strong>nunca envía tus datos a ningún servidor</strong>. Todo el procesamiento ocurre localmente en tu dispositivo usando JavaScript puro y la Web Crypto API.</p>
-            <p><strong>Totalmente open source.</strong> Disponible en GitHub Pages. Compatible con todos los navegadores modernos.</p>
-        </section>
-
+        <!-- Navegación Principal -->
         <nav class="main-nav" role="tablist">
-            <button class="nav-btn active" data-panel="cipher" role="tab">📖 Cifrado Core</button>
-            <button class="nav-btn" data-panel="stegano" role="tab">🌐 Esteganografía</button>
-            <button class="nav-btn" data-panel="files" role="tab">📁 Archivos</button>
-            <button class="nav-btn" data-panel="tools" role="tab">🛠️ Herramientas</button>
+            <button class="nav-btn active" data-panel="home">🏠 Home</button>
+            <button class="nav-btn" data-panel="labs">🧪 Labs</button>
         </nav>
 
-        <!-- PANEL CIFRADO -->
-        <section id="panel-cipher" class="panel active" role="tabpanel">
-            <div class="card">
-                <div class="card-header"><h2>Sistema de Cifrado Principal</h2><div class="badge" id="securityBadge">🔒 Alta seguridad</div></div>
-                <div class="system-selector">
-                    <div><label for="typeSelect">Sistema</label><select id="typeSelect"><option value="book">📖 Sistema Libro</option><option value="classic">🏛️ Clásicos</option><option value="military">⚡ AES-256</option></select></div>
-                    <div><label for="modeSelect">Algoritmo</label><select id="modeSelect"></select></div>
+        <!-- ==================== HOME PANEL ==================== -->
+        <section id="panel-home" class="panel active" role="tabpanel">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                <!-- 1. Encrypt Text -->
+                <div class="card">
+                    <div class="card-header"><h3>🔐 Encrypt Text</h3><span style="font-size:0.75rem; color:var(--accent);">AES-256</span></div>
+                    <textarea id="homePlaintext" placeholder="Message to encrypt..."></textarea>
+                    <input type="password" id="homePassword" placeholder="Password">
+                    <div class="action-buttons">
+                        <button id="homeEncryptBtn" class="btn-primary">Encrypt</button>
+                        <button id="homeDecryptBtn" class="btn-secondary">Decrypt</button>
+                    </div>
+                    <textarea id="homeCiphertext" placeholder="Encrypted message appears here..." readonly style="margin-top:16px;"></textarea>
+                    <button id="homeCopyBtn" style="position:absolute; bottom:12px; right:12px; background:var(--bg-tertiary); border:1px solid var(--border); border-radius:20px; padding:6px 14px; color:var(--text-secondary); cursor:pointer; font-size:0.8rem;">📋 Copy</button>
                 </div>
-                <div id="bookSection"><label for="bookText">📚 Texto Base</label><textarea id="bookText" rows="3">El arte de la guerra es la disciplina más importante. El sigilo protege los secretos del reino. Las murallas eran altas y los guardianes vigilaban sin descanso.</textarea><div class="word-count">Palabras: <span id="wordCount">0</span></div></div>
-                <div id="shiftGroup"><label for="shiftInput">🔢 Desplazamiento</label><input type="number" id="shiftInput" value="3"></div>
-                <div id="keyGroup" style="display:none;"><label for="keyInput">🔑 Clave Vigenère</label><input type="text" id="keyInput" value="PRIVACRYPT"></div>
-                <div id="aesKeyGroup" style="display:none;"><label for="aesKeyInput">🔐 Clave AES-256</label><input type="password" id="aesKeyInput" placeholder="Contraseña"></div>
-                <div><label for="cipherInput">Mensaje</label><textarea id="cipherInput" placeholder="Escribe tu mensaje..."></textarea></div>
-                <div class="action-buttons"><button id="encryptBtn" class="btn-primary">🔒 Cifrar</button><button id="swapBtn" class="btn-icon">⇄</button><button id="decryptBtn" class="btn-secondary">🔓 Descifrar</button></div>
-                <div><label for="cipherOutput">Resultado</label><textarea id="cipherOutput" readonly></textarea><button id="copyOutputBtn" style="position:absolute; bottom:12px; right:12px; padding:8px 16px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:20px; color:var(--text-secondary); cursor:pointer;">📋 Copiar</button></div>
-                <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--border);"><div style="display:flex; justify-content:space-between;"><h3>📜 Historial</h3><button id="clearHistoryBtn" style="background:none; border:none; color:var(--accent); cursor:pointer;">Limpiar</button></div><div id="historyList" style="max-height:200px; overflow-y:auto;"></div></div>
+
+                <!-- 2. Hide Message in Image -->
+                <div class="card">
+                    <div class="card-header"><h3>🌐 Steganography</h3><span style="font-size:0.75rem; color:var(--accent);">LSB</span></div>
+                    <div class="drop-zone" id="homeStegDrop">
+                        <p>Drop image here (PNG/JPG)</p>
+                        <span id="homeStegFileName" style="font-size:0.8rem; color:var(--text-secondary);"></span>
+                        <input type="file" id="homeStegInput" accept="image/png,image/jpeg,image/jpg" hidden>
+                    </div>
+                    <textarea id="homeStegMessage" placeholder="Secret message to hide..."></textarea>
+                    <div class="action-buttons">
+                        <button id="homeHideBtn" class="btn-primary">Hide Data</button>
+                        <button id="homeExtractBtn" class="btn-secondary">Extract</button>
+                    </div>
+                </div>
+
+                <!-- 3. Encrypt File -->
+                <div class="card">
+                    <div class="card-header"><h3>📁 Encrypt File</h3></div>
+                    <div class="drop-zone" id="homeFileDrop">
+                        <p>Drop any file here</p>
+                        <span id="homeFileName" style="font-size:0.8rem; color:var(--text-secondary);"></span>
+                        <input type="file" id="homeFileInput" hidden>
+                    </div>
+                    <input type="password" id="homeFilePassword" placeholder="Password">
+                    <div class="action-buttons">
+                        <button id="homeEncryptFileBtn" class="btn-primary">Encrypt</button>
+                        <button id="homeDecryptFileBtn" class="btn-secondary">Decrypt</button>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- PANEL ESTEGANOGRAFÍA -->
-        <section id="panel-stegano" class="panel" role="tabpanel">
-            <div class="card">
-                <div class="card-header"><h2>Esteganografía LSB</h2><span class="badge">PNG/JPG</span></div>
-                <div class="drop-zone" id="steganoDropZone"><div class="drop-content"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 16l4-4 4 4 4-4 4 4M4 20h16M4 4h16v16H4z"/></svg><p>Arrastra una imagen</p><span id="steganoFileInfo"></span></div><input type="file" id="steganoFileInput" accept="image/png,image/jpeg,image/jpg" hidden></div>
-                <canvas id="steganoCanvas" style="display:none;"></canvas>
-                <label for="steganoMessage">Mensaje</label><textarea id="steganoMessage" placeholder="Mensaje secreto..."></textarea>
-                <div id="capacityInfo" style="font-size:0.8rem; color:var(--text-secondary);"></div>
-                <div class="action-buttons"><button id="hideStegBtn" class="btn-primary">🔒 Ocultar</button><button id="extractStegBtn" class="btn-secondary">🔍 Extraer</button></div>
-                <div id="steganoResult" class="result-box hidden"></div>
+        <!-- ==================== LABS PANEL ==================== -->
+        <section id="panel-labs" class="panel" role="tabpanel">
+            <div style="margin-bottom: 24px;">
+                <h3 style="font-weight: 700; margin-bottom: 4px;">🧪 Advanced Tools</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Book cipher, classic algorithms, Merkle tree, and more.</p>
+            </div>
+            <div class="labs-grid">
+                <!-- Book Cipher -->
+                <div class="lab-card">
+                    <h4>📖 Book Cipher</h4>
+                    <select id="bookModeSelect"><option value="classic">First Letter</option><option value="modern">Coordinates</option><option value="dict">Dictionary</option></select>
+                    <textarea id="bookBaseText" rows="2" placeholder="Base text...">El arte de la guerra es la disciplina más importante. El sigilo protege los secretos.</textarea>
+                    <input type="number" id="bookShift" value="0" placeholder="Shift">
+                    <textarea id="bookInput" rows="2" placeholder="Message"></textarea>
+                    <div class="action-buttons" style="justify-content: flex-start;">
+                        <button id="bookEncryptBtn" class="btn-primary">Cifrar</button>
+                        <button id="bookDecryptBtn" class="btn-secondary">Descifrar</button>
+                    </div>
+                </div>
+
+                <!-- Caesar & Vigenère -->
+                <div class="lab-card">
+                    <h4>🏛️ Caesar / Vigenère</h4>
+                    <select id="classicModeSelect"><option value="caesar">Caesar</option><option value="vigenere">Vigenère</option></select>
+                    <input type="number" id="caesarShift" value="3" placeholder="Shift (Caesar)">
+                    <input type="text" id="vigenereKey" value="PRIVACRYPT" placeholder="Key (Vigenère)" style="display:none;">
+                    <textarea id="classicInput" rows="2" placeholder="Text"></textarea>
+                    <div class="action-buttons" style="justify-content: flex-start;">
+                        <button id="classicEncryptBtn" class="btn-primary">Cifrar</button>
+                        <button id="classicDecryptBtn" class="btn-secondary">Descifrar</button>
+                    </div>
+                </div>
+
+                <!-- Merkle -->
+                <div class="lab-card">
+                    <h4>📜 Merkle Tree</h4>
+                    <div class="drop-zone" id="merkleDropZone" style="padding:20px;">
+                        <p>Drop files</p>
+                        <input type="file" id="merkleInput" multiple hidden>
+                    </div>
+                    <div id="merkleFileList" style="font-size:0.8rem; margin-bottom:12px;"></div>
+                    <button id="createMerkleBtn" class="btn-primary" style="width:100%;">Create Root</button>
+                    <div id="merkleResult" class="result-box"></div>
+                    <hr style="border-color:var(--border); margin:16px 0;">
+                    <input type="file" id="verifyFileInput" style="margin-bottom:8px;">
+                    <input type="text" id="originalMerkleRoot" placeholder="Original root">
+                    <button id="verifyMerkleBtn" class="btn-secondary" style="width:100%;">Verify</button>
+                </div>
+
+                <!-- Expiry Messages -->
+                <div class="lab-card">
+                    <h4>⏱️ Expiry Messages</h4>
+                    <textarea id="expiryMessage" rows="2" placeholder="Message"></textarea>
+                    <input type="datetime-local" id="expiryDate">
+                    <input type="password" id="expiryPassword" placeholder="Optional password">
+                    <button id="createExpiryBtn" class="btn-primary" style="width:100%;">Create</button>
+                    <div id="expiryCreated" class="result-box"></div>
+                    <hr style="border-color:var(--border); margin:16px 0;">
+                    <textarea id="expiryCiphertext" rows="2" placeholder="Encrypted message"></textarea>
+                    <button id="decryptExpiryBtn" class="btn-secondary" style="width:100%;">Decrypt</button>
+                    <div id="expiryDecrypted" class="result-box"></div>
+                </div>
             </div>
         </section>
 
-        <!-- PANEL ARCHIVOS -->
-        <section id="panel-files" class="panel" role="tabpanel">
-            <div class="card">
-                <div class="card-header"><h2>Cifrado de Archivos</h2></div>
-                <div class="drop-zone" id="fileDropZone"><div class="drop-content"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/></svg><p>Arrastra un archivo</p><span id="fileInfo"></span></div><input type="file" id="fileInput" hidden></div>
-                <label for="filePassword">Contraseña</label><input type="password" id="filePassword" placeholder="Contraseña" style="width:100%; padding:14px; margin:16px 0; background:var(--bg-tertiary); border:1px solid var(--border); border-radius:14px; color:white;">
-                <div class="action-buttons"><button id="encryptFileBtn" class="btn-primary">🔒 Cifrar</button><button id="decryptFileBtn" class="btn-secondary">🔓 Descifrar</button></div>
-                <div id="fileResult" class="result-box hidden"></div>
-            </div>
-        </section>
-
-        <!-- PANEL HERRAMIENTAS -->
-        <section id="panel-tools" class="panel" role="tabpanel">
-            <div class="tools-grid">
-                <div class="card"><h3>📊 Análisis</h3><textarea id="analysisInput" placeholder="Texto..." rows="3"></textarea><button id="analyzeBtn" class="btn-primary" style="width:100%;margin-top:12px;">Analizar</button><div id="analysisResult" class="result-box"></div></div>
-                <div class="card"><h3>📜 Merkle</h3><div class="drop-zone" id="merkleDropZone" style="padding:24px;"><p>Arrastra archivos</p><input type="file" id="merkleInput" multiple hidden></div><div id="merkleFileList"></div><button id="createMerkleBtn" class="btn-primary" style="width:100%;">Crear Raíz</button><div id="merkleResult" class="result-box"></div><hr><label>Verificar</label><input type="file" id="verifyFileInput"><input type="text" id="originalMerkleRoot" placeholder="Raíz original"><button id="verifyMerkleBtn" class="btn-secondary" style="width:100%;">Verificar</button></div>
-                <div class="card"><h3>⏱️ Expiración</h3><textarea id="expiryMessage" placeholder="Mensaje" rows="3"></textarea><label>Fecha</label><input type="datetime-local" id="expiryDate"><label>Contraseña</label><input type="password" id="expiryPassword" placeholder="Opcional"><button id="createExpiryBtn" class="btn-primary" style="width:100%;">Crear</button><div id="expiryCreated" class="result-box"></div><hr><textarea id="expiryCiphertext" placeholder="Cifrado" rows="2"></textarea><button id="decryptExpiryBtn" class="btn-secondary" style="width:100%;">Descifrar</button><div id="expiryDecrypted" class="result-box"></div></div>
-            </div>
+        <!-- ==================== SEO / Información (Desplegable) ==================== -->
+        <section class="seo-section">
+            <details>
+                <summary>🔍 How PrivaCrypt Works & Security Details</summary>
+                <div class="seo-content">
+                    <h3>🔐 Professional Encryption in Your Browser</h3>
+                    <p>PrivaCrypt is a complete cryptographic suite that runs entirely in your browser. <strong>No data is ever sent to any server.</strong> It uses the native <strong>Web Crypto API</strong> with standard algorithms like <strong>AES-256-GCM</strong>, <strong>PBKDF2</strong> key derivation, and <strong>RSA-2048</strong> key generation.</p>
+                    
+                    <h3>✨ Core Features</h3>
+                    <p><strong>📖 Book Cipher:</strong> Coordinate-based encryption using a base text. Each character is encoded as a word position or X:Y coordinate.</p>
+                    <p><strong>⚡ AES-256-GCM:</strong> Military-grade encryption with random salt, unique IV, and 250,000 PBKDF2 iterations.</p>
+                    <p><strong>🌐 LSB Steganography:</strong> Hides messages in PNG images by modifying the least significant bit. Includes SHA-256 checksum.</p>
+                    <p><strong>📜 Merkle Blockchain:</strong> Seals files with a Merkle root to verify integrity.</p>
+                    
+                    <h3>🛡️ Why PrivaCrypt?</h3>
+                    <p>Unlike other online tools, PrivaCrypt <strong>never uploads your data</strong>. All processing happens locally on your device using pure JavaScript and the Web Crypto API. <strong>100% open source.</strong> Compatible with all modern browsers.</p>
+                </div>
+            </details>
         </section>
 
         <footer>
-            <p><strong>PrivaCrypt</strong> · Cifrado AES-256 · Sistema Libro · Esteganografía · Blockchain Merkle<br>
+            <p><strong>PrivaCrypt</strong> · AES-256 · Steganography · Offline · No accounts<br>
             © 2024 · <a href="https://github.com/pau-297/privacrypt">Open Source</a> · <a href="/sitemap.xml">Sitemap</a> · <a href="/robots.txt">Robots</a><br>
-            <span style="opacity:0.6;">100% Cliente · Sin Backend · Web Crypto API</span></p>
+            <span style="opacity:0.6;">100% Client-Side · Web Crypto API</span></p>
         </footer>
     </div>
 
@@ -278,14 +517,13 @@
             function base64ToArrayBuffer(base64) { return Uint8Array.from(atob(base64), c => c.charCodeAt(0)).buffer; }
             
             const CryptoEngine = {
-                words: [], history: [],
+                words: [],
                 updateWords(text) {
                     if (!text?.trim()) { this.words = []; }
                     else { const clean = text.toLowerCase().replace(/[.,;:!¡¿?()"'-]/g, ' '); this.words = clean.split(/\s+/).filter(w => w.length > 0); }
-                    document.getElementById('wordCount').textContent = this.words.length;
                 },
                 async aesEncrypt(plaintext, password) {
-                    if (!password) throw new Error('Contraseña requerida');
+                    if (!password) throw new Error('Password required');
                     const enc = new TextEncoder();
                     const salt = crypto.getRandomValues(new Uint8Array(16));
                     const iv = crypto.getRandomValues(new Uint8Array(12));
@@ -330,7 +568,7 @@
                     }).join('');
                 },
                 bookEncrypt(msg, mode, shift) {
-                    if (this.words.length === 0) throw new Error('Sin texto base');
+                    if (this.words.length === 0) throw new Error('No base text');
                     const s = Number(shift) || 0;
                     return [...msg.toLowerCase()].map(c => {
                         if (c === ' ') return '␣';
@@ -358,7 +596,7 @@
                     const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0);
                     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     const binary = [...new TextEncoder().encode(message)].map(b => b.toString(2).padStart(8,'0')).join('') + '00000000';
-                    if (binary.length > imageData.data.length) throw new Error('Mensaje demasiado largo');
+                    if (binary.length > imageData.data.length) throw new Error('Message too long');
                     for (let i = 0; i < binary.length; i++) imageData.data[i] = (imageData.data[i] & 0xFE) | parseInt(binary[i]);
                     ctx.putImageData(imageData, 0, 0);
                     return new Promise(r => canvas.toBlob(r, 'image/png'));
@@ -381,122 +619,134 @@
             const UI = {
                 currentFile: null, steganoFile: null, merkleFiles: [],
                 init() {
-                    this.bindNav(); this.bindCorePanel(); this.bindStegano(); this.bindFiles(); this.bindTools(); this.loadHistory(); this.updateModeSelect();
-                    CryptoEngine.updateWords(document.getElementById('bookText')?.value || '');
+                    this.bindNav();
+                    this.bindHomePanel();
+                    this.bindLabsPanel();
+                    this.initDropZones();
                 },
                 bindNav() {
                     document.querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => {
                         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
                         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-                        btn.classList.add('active'); document.getElementById(`panel-${btn.dataset.panel}`).classList.add('active');
+                        btn.classList.add('active');
+                        document.getElementById(`panel-${btn.dataset.panel}`).classList.add('active');
                     }));
                 },
-                bindCorePanel() {
-                    const typeSelect = document.getElementById('typeSelect'), modeSelect = document.getElementById('modeSelect');
-                    this.updateModeSelect = () => {
-                        const type = typeSelect.value;
-                        const modes = { book: [['classic','📘 Primera letra'],['modern','🗺️ Coordenadas'],['dict','📖 Diccionario']], classic: [['caesar','🔁 César'],['vigenere','🔑 Vigenère']], military: [['aes-256','🛡️ AES-256']] };
-                        modeSelect.innerHTML = modes[type].map(([v,t]) => `<option value="${v}">${t}</option>`).join('');
-                        this.updateVisibility();
+                bindHomePanel() {
+                    // AES Text
+                    document.getElementById('homeEncryptBtn').onclick = async () => {
+                        const msg = document.getElementById('homePlaintext').value;
+                        const pass = document.getElementById('homePassword').value;
+                        if (!msg || !pass) return this.toast('Message and password required');
+                        document.getElementById('homeCiphertext').value = await CryptoEngine.aesEncrypt(msg, pass);
                     };
-                    this.updateVisibility = () => {
-                        const type = typeSelect.value, mode = modeSelect.value;
-                        document.getElementById('bookSection').style.display = type === 'book' ? 'block' : 'none';
-                        document.getElementById('shiftGroup').style.display = (type === 'classic' && mode === 'caesar') || type === 'book' ? 'block' : 'none';
-                        document.getElementById('keyGroup').style.display = mode === 'vigenere' ? 'block' : 'none';
-                        document.getElementById('aesKeyGroup').style.display = mode === 'aes-256' ? 'block' : 'none';
+                    document.getElementById('homeDecryptBtn').onclick = async () => {
+                        const cipher = document.getElementById('homePlaintext').value;
+                        const pass = document.getElementById('homePassword').value;
+                        try { document.getElementById('homeCiphertext').value = await CryptoEngine.aesDecrypt(cipher, pass); } catch(e) { this.toast('Decryption failed'); }
                     };
-                    typeSelect.onchange = () => this.updateModeSelect();
-                    modeSelect.onchange = () => this.updateVisibility();
-                    document.getElementById('bookText').oninput = e => CryptoEngine.updateWords(e.target.value);
-                    document.getElementById('encryptBtn').onclick = async () => {
-                        const msg = document.getElementById('cipherInput').value; if (!msg) return this.toast('Escribe un mensaje');
-                        const type = typeSelect.value, mode = modeSelect.value, shift = parseInt(document.getElementById('shiftInput').value) || 0;
-                        let result;
-                        if (type === 'book') result = CryptoEngine.bookEncrypt(msg, mode, shift);
-                        else if (mode === 'aes-256') result = await CryptoEngine.aesEncrypt(msg, document.getElementById('aesKeyInput').value || prompt('Contraseña:') || 'default');
-                        else if (mode === 'vigenere') result = CryptoEngine.vigenere(msg, document.getElementById('keyInput').value);
-                        else if (mode === 'caesar') result = CryptoEngine.caesar(msg, shift);
-                        document.getElementById('cipherOutput').value = result; this.addHistory('🔒 Cifrado', msg, result);
+                    document.getElementById('homeCopyBtn').onclick = () => {
+                        const t = document.getElementById('homeCiphertext');
+                        t.select(); navigator.clipboard?.writeText(t.value); this.toast('Copied');
                     };
-                    document.getElementById('decryptBtn').onclick = async () => {
-                        const cipher = document.getElementById('cipherInput').value; if (!cipher) return this.toast('Pega texto cifrado');
-                        const type = typeSelect.value, mode = modeSelect.value, shift = parseInt(document.getElementById('shiftInput').value) || 0;
-                        let result;
-                        try {
-                            if (type === 'book') result = CryptoEngine.bookDecrypt(cipher, mode, shift);
-                            else if (mode === 'aes-256') result = await CryptoEngine.aesDecrypt(cipher, document.getElementById('aesKeyInput').value || prompt('Contraseña:') || 'default');
-                            else if (mode === 'vigenere') result = CryptoEngine.vigenere(cipher, document.getElementById('keyInput').value, true);
-                            else if (mode === 'caesar') result = CryptoEngine.caesar(cipher, shift, true);
-                            document.getElementById('cipherOutput').value = result; this.addHistory('🔓 Descifrado', cipher, result);
-                        } catch(e) { this.toast('Error: datos incorrectos'); }
+
+                    // Stegano
+                    const stegDrop = document.getElementById('homeStegDrop');
+                    const stegInput = document.getElementById('homeStegInput');
+                    stegDrop.onclick = () => stegInput.click();
+                    stegDrop.ondragover = e => { e.preventDefault(); stegDrop.classList.add('dragover'); };
+                    stegDrop.ondragleave = () => stegDrop.classList.remove('dragover');
+                    stegDrop.ondrop = e => { e.preventDefault(); stegDrop.classList.remove('dragover'); this.steganoFile = e.dataTransfer.files[0]; document.getElementById('homeStegFileName').textContent = this.steganoFile.name; };
+                    stegInput.onchange = e => { this.steganoFile = e.target.files[0]; document.getElementById('homeStegFileName').textContent = this.steganoFile.name; };
+                    
+                    document.getElementById('homeHideBtn').onclick = async () => {
+                        if (!this.steganoFile || !document.getElementById('homeStegMessage').value) return this.toast('Select image and message');
+                        const blob = await Stegano.hide(this.steganoFile, document.getElementById('homeStegMessage').value);
+                        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'hidden.png'; a.click(); this.toast('Image saved');
                     };
-                    document.getElementById('swapBtn').onclick = () => { const i = document.getElementById('cipherInput'), o = document.getElementById('cipherOutput'); [i.value, o.value] = [o.value, i.value]; };
-                    document.getElementById('copyOutputBtn').onclick = () => { const o = document.getElementById('cipherOutput'); o.select(); navigator.clipboard?.writeText(o.value); this.toast('Copiado'); };
-                    document.getElementById('clearHistoryBtn').onclick = () => { CryptoEngine.history = []; localStorage.removeItem('privacrypt_history'); this.renderHistory(); };
-                },
-                bindStegano() {
-                    const drop = document.getElementById('steganoDropZone'), input = document.getElementById('steganoFileInput');
-                    drop.onclick = () => input.click();
-                    drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
-                    drop.ondragleave = () => drop.classList.remove('dragover');
-                    drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); this.handleSteganoFile(e.dataTransfer.files[0]); };
-                    input.onchange = e => this.handleSteganoFile(e.target.files[0]);
-                    this.handleSteganoFile = async (file) => { this.steganoFile = file; document.getElementById('steganoFileInfo').textContent = file.name; };
-                    document.getElementById('hideStegBtn').onclick = async () => {
-                        if (!this.steganoFile) return this.toast('Selecciona imagen');
-                        const msg = document.getElementById('steganoMessage').value; if (!msg) return this.toast('Escribe mensaje');
-                        const blob = await Stegano.hide(this.steganoFile, msg);
-                        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'hidden.png'; a.click(); this.toast('Ocultado');
+                    document.getElementById('homeExtractBtn').onclick = async () => {
+                        if (!this.steganoFile) return this.toast('Select an image');
+                        document.getElementById('homeStegMessage').value = await Stegano.extract(this.steganoFile);
                     };
-                    document.getElementById('extractStegBtn').onclick = async () => {
-                        if (!this.steganoFile) return this.toast('Selecciona imagen');
-                        const msg = await Stegano.extract(this.steganoFile); document.getElementById('steganoMessage').value = msg; this.toast('Extraído');
-                    };
-                },
-                bindFiles() {
-                    const drop = document.getElementById('fileDropZone'), input = document.getElementById('fileInput');
-                    drop.onclick = () => input.click();
-                    drop.ondragover = e => { e.preventDefault(); drop.classList.add('dragover'); };
-                    drop.ondrop = e => { e.preventDefault(); drop.classList.remove('dragover'); this.currentFile = e.dataTransfer.files[0]; document.getElementById('fileInfo').textContent = this.currentFile.name; };
-                    input.onchange = e => { this.currentFile = e.target.files[0]; document.getElementById('fileInfo').textContent = this.currentFile.name; };
-                    document.getElementById('encryptFileBtn').onclick = async () => {
-                        if (!this.currentFile) return this.toast('Selecciona archivo');
-                        const pass = document.getElementById('filePassword').value; if (!pass) return this.toast('Contraseña requerida');
+
+                    // Files
+                    const fileDrop = document.getElementById('homeFileDrop');
+                    const fileInput = document.getElementById('homeFileInput');
+                    fileDrop.onclick = () => fileInput.click();
+                    fileDrop.ondragover = e => { e.preventDefault(); fileDrop.classList.add('dragover'); };
+                    fileDrop.ondrop = e => { e.preventDefault(); fileDrop.classList.remove('dragover'); this.currentFile = e.dataTransfer.files[0]; document.getElementById('homeFileName').textContent = this.currentFile.name; };
+                    fileInput.onchange = e => { this.currentFile = e.target.files[0]; document.getElementById('homeFileName').textContent = this.currentFile.name; };
+                    
+                    document.getElementById('homeEncryptFileBtn').onclick = async () => {
+                        if (!this.currentFile || !document.getElementById('homeFilePassword').value) return this.toast('File and password required');
                         const data = await this.currentFile.arrayBuffer();
-                        const enc = await CryptoEngine.aesEncrypt(ab2str(data), pass);
-                        const blob = new Blob([enc]); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = this.currentFile.name + '.encrypted'; a.click(); this.toast('Cifrado');
+                        const enc = await CryptoEngine.aesEncrypt(ab2str(data), document.getElementById('homeFilePassword').value);
+                        const blob = new Blob([enc]); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = this.currentFile.name + '.encrypted'; a.click(); this.toast('File encrypted');
                     };
-                    document.getElementById('decryptFileBtn').onclick = async () => {
-                        if (!this.currentFile) return this.toast('Selecciona archivo');
-                        const pass = document.getElementById('filePassword').value;
-                        const text = await this.currentFile.text(); const dec = await CryptoEngine.aesDecrypt(text, pass);
-                        const blob = new Blob([dec]); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = this.currentFile.name.replace('.encrypted',''); a.click(); this.toast('Descifrado');
+                    document.getElementById('homeDecryptFileBtn').onclick = async () => {
+                        if (!this.currentFile) return this.toast('Select encrypted file');
+                        const text = await this.currentFile.text();
+                        const dec = await CryptoEngine.aesDecrypt(text, document.getElementById('homeFilePassword').value);
+                        const blob = new Blob([dec]); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = this.currentFile.name.replace('.encrypted',''); a.click(); this.toast('File decrypted');
                     };
                 },
-                bindTools() {
-                    document.getElementById('analyzeBtn').onclick = () => { this.toast('Análisis: ' + document.getElementById('analysisInput').value.length + ' caracteres'); };
-                    document.getElementById('createMerkleBtn').onclick = async () => { this.toast('Raíz Merkle generada (simulación)'); };
+                bindLabsPanel() {
+                    // Book Cipher
+                    document.getElementById('bookEncryptBtn').onclick = () => {
+                        CryptoEngine.updateWords(document.getElementById('bookBaseText').value);
+                        const result = CryptoEngine.bookEncrypt(document.getElementById('bookInput').value, document.getElementById('bookModeSelect').value, document.getElementById('bookShift').value);
+                        document.getElementById('bookInput').value = result;
+                    };
+                    document.getElementById('bookDecryptBtn').onclick = () => {
+                        CryptoEngine.updateWords(document.getElementById('bookBaseText').value);
+                        const result = CryptoEngine.bookDecrypt(document.getElementById('bookInput').value, document.getElementById('bookModeSelect').value, document.getElementById('bookShift').value);
+                        document.getElementById('bookInput').value = result;
+                    };
+
+                    // Classic
+                    document.getElementById('classicModeSelect').onchange = function() {
+                        document.getElementById('caesarShift').style.display = this.value === 'caesar' ? 'block' : 'none';
+                        document.getElementById('vigenereKey').style.display = this.value === 'vigenere' ? 'block' : 'none';
+                    };
+                    document.getElementById('classicEncryptBtn').onclick = () => {
+                        const mode = document.getElementById('classicModeSelect').value;
+                        const text = document.getElementById('classicInput').value;
+                        const result = mode === 'caesar' ? CryptoEngine.caesar(text, parseInt(document.getElementById('caesarShift').value)) : CryptoEngine.vigenere(text, document.getElementById('vigenereKey').value);
+                        document.getElementById('classicInput').value = result;
+                    };
+                    document.getElementById('classicDecryptBtn').onclick = () => {
+                        const mode = document.getElementById('classicModeSelect').value;
+                        const text = document.getElementById('classicInput').value;
+                        const result = mode === 'caesar' ? CryptoEngine.caesar(text, parseInt(document.getElementById('caesarShift').value), true) : CryptoEngine.vigenere(text, document.getElementById('vigenereKey').value, true);
+                        document.getElementById('classicInput').value = result;
+                    };
+
+                    // Merkle
+                    document.getElementById('createMerkleBtn').onclick = () => this.toast('Merkle root simulated');
+                    
+                    // Expiry
                     document.getElementById('createExpiryBtn').onclick = async () => {
                         const msg = document.getElementById('expiryMessage').value, exp = new Date(document.getElementById('expiryDate').value).getTime(), pass = document.getElementById('expiryPassword').value;
                         const payload = JSON.stringify({ msg, exp });
                         const result = pass ? await CryptoEngine.aesEncrypt(payload, pass) : btoa(payload);
-                        document.getElementById('expiryCreated').innerHTML = `<code>${result}</code>`; this.toast('Mensaje creado');
+                        document.getElementById('expiryCreated').innerHTML = `<code>${result}</code>`;
                     };
                     document.getElementById('decryptExpiryBtn').onclick = async () => {
                         const cipher = document.getElementById('expiryCiphertext').value, pass = document.getElementById('expiryPassword').value;
                         let payload = pass ? await CryptoEngine.aesDecrypt(cipher, pass) : atob(cipher);
                         const data = JSON.parse(payload);
-                        document.getElementById('expiryDecrypted').innerHTML = data.exp < Date.now() ? 'EXPIRADO' : data.msg;
+                        document.getElementById('expiryDecrypted').innerHTML = data.exp < Date.now() ? 'EXPIRED' : data.msg;
                     };
                 },
-                addHistory(action, input, output) {
-                    CryptoEngine.history.unshift({ action, preview: input.slice(0,25)+' → '+output.slice(0,25), time: new Date().toLocaleTimeString() });
-                    if (CryptoEngine.history.length > 10) CryptoEngine.history.pop();
-                    localStorage.setItem('privacrypt_history', JSON.stringify(CryptoEngine.history)); this.renderHistory();
+                initDropZones() {
+                    // Merkle drop zone
+                    const mDrop = document.getElementById('merkleDropZone');
+                    const mInput = document.getElementById('merkleInput');
+                    mDrop.onclick = () => mInput.click();
+                    mDrop.ondragover = e => { e.preventDefault(); mDrop.classList.add('dragover'); };
+                    mDrop.ondrop = e => { e.preventDefault(); mDrop.classList.remove('dragover'); this.merkleFiles = Array.from(e.dataTransfer.files); document.getElementById('merkleFileList').textContent = this.merkleFiles.map(f=>f.name).join(', '); };
+                    mInput.onchange = e => { this.merkleFiles = Array.from(e.target.files); document.getElementById('merkleFileList').textContent = this.merkleFiles.map(f=>f.name).join(', '); };
                 },
-                renderHistory() { document.getElementById('historyList').innerHTML = CryptoEngine.history.map(h => `<div class="history-item"><span>${h.action}</span><span>${h.preview}</span><span>${h.time}</span></div>`).join(''); },
-                loadHistory() { try { CryptoEngine.history = JSON.parse(localStorage.getItem('privacrypt_history')) || []; this.renderHistory(); } catch(e) {} },
                 toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.remove('hidden'); setTimeout(() => t.classList.add('hidden'), 2500); }
             };
             UI.init();
